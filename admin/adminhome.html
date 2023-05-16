@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style> 
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+        }
+        #data{
+            width: 300px;
+            height: 100vh;
+            border: 2px solid black;
+            /* margin-left: 100px; */
+        }
+        #list{
+            width: 1100px;
+            height: 100vh;
+            border: 2px solid black;
+            margin-left: 100px;
+        }
+        h1{
+            text-align: center;
+        }
+        button{
+            font-size: 25px;
+            display: block;
+            margin: 10px auto;
+            
+        }
+        #addmovie{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="data">
+            <h1>Admin</h1>
+            <button onclick="handlecinema()">Add Cinema</button>
+            <br><br>
+            <button>Add Movie</button>
+        </div>
+
+        <div id="list">
+            <div id="addmovie">
+                <form  method="post" id="movie-add">
+                    <br><br>
+                    <label for=""> Movie Name</label><br>
+                    <input type="text" name="name" id="movie" placeholder="Please Enter Movie Name: ">
+                    <br><br>
+        
+        
+                    <label for="">Cinema Location </label><br>
+                    <input type="text" name="location" id="location" placeholder="Please Enter Cinema Location: ">
+                    <br><br>
+        
+        
+                    <label for="">Facility</label><br>
+                    <input type="text" name="name" id="facility" placeholder="Please Enter Facility: ">
+                    <br><br>
+        
+                    <input type="submit" value="Add Movie">
+                </form>
+
+
+                <table class="table">
+                
+                    <tr>
+                      <!-- <th scope="col">#</th> -->
+                      <th scope="col">Movies</th>
+                      <th scope="col">Location</th>
+                      <th scope="col">Facility</th>
+                    </tr>
+                  
+                  <tbody id="trMovie">
+                    
+                  </tbody>
+                </table>
+            </div>
+        
+          
+        
+           
+        
+        </div>
+    </div>
+
+    <script src="../assets/js/adminhome.js"></script>
+</body>
+</html>
+
+
+
+
+<!-- let costRef = document.getElementById("costdata");
+
+let budgetData, spanElem, textElem;
+let expeData,
+    expeAmt = 0,
+    spanElem1,
+    textElem1,
+    spanElem2,
+    textElem2;
+let arr1 = [],
+    bElem4,
+    btextElm4,
+    expeAmt1 , divExtra;
+let update = false, uid=null,
+    reMath;
+
+
+const getBudgetData = () => {
+    let data1 = localStorage.getItem("budget1");
+    console.log("get data" , data1);
+    let data = JSON.parse(localStorage.getItem("budget"));
+    console.log("get data" , data);
+    if(data != null){
+
+        let disp = '<div>'
+       data.map(( v , i) => {
+            disp += '<p>' + v.name + '</p>';
+            disp += '<p>' + v.numExpens + '</p>';
+            disp += '<p>' + '<button onclick="handleRemove(' + v.id + ')"> X </button>' + '</p>';
+            disp += '<p>' + '<button onclick="handleEdit(' + v.id + ')"> Edit </button>'  + '</p>';
+        })
+       disp += '</div>';
+       document.getElementById("data11").innerHTML = disp;
+    }
+   
+}
+
+
+const handleBudget = () => {
+
+
+    budgetData = document.getElementById("budget").value;
+
+    spanElem = document.createElement("span");
+    spanElem.setAttribute("id", "span-1")
+
+    textElem = document.createTextNode(budgetData);
+
+    spanElem.appendChild(textElem);
+
+    let divRef = document.getElementById("data1");
+
+    divRef.appendChild(spanElem);
+
+    spanElem1 = document.createElement("span");
+    textElem1 = document.createTextNode("$ " + expeAmt);
+    spanElem1.appendChild(textElem1);
+    let divRef1 = document.getElementById("data2");
+    divRef1.appendChild(spanElem1);
+
+    spanElem2 = document.createElement("span");
+    textElem2 = document.createTextNode("$ " + (budgetData -= expeAmt));
+    spanElem2.appendChild(textElem2);
+    let divRef2 = document.getElementById("data3");
+    divRef2.appendChild(spanElem2);
+
+    event.preventDefault();
+
+    localStorage.setItem("budget1" , budgetData)
+};
+
+const handleupdatedata = () => {
+    let localData = JSON.parse(localStorage.getItem("budget"));
+
+    let updateEx = document.getElementById("expense").value;
+    let updateNum = parseInt(document.getElementById("expAmount").value);
+
+    let perentElem = document.getElementById("data" + uid)
+
+    perentElem.children[0].textContent = updateEx;
+    perentElem.children[1].textContent = updateNum;
+
+    console.log(arr1, uid);
+
+    let uData = localData.map((a) => {
+        if (a.id === uid) {
+            return {
+                id: uid,
+                name: updateEx,
+                numExpens: updateNum,
+            }
+        } else {
+            return a;
+        }
+    });
+
+    console.log(uData);
+  
+ 
+    update = false;
+    uid = null
+
+    localStorage.setItem("budget" , JSON.stringify(uData));
+
+    handleData1();
+
+    event.preventDefault();
+};
+
+const handleData1 = () => {
+    let localData = JSON.parse(localStorage.getItem("budget"));
+    let bud = parseInt(document.getElementById("span-1").innerHTML);
+
+    let ans = localData.reduce((acc, v) => acc + v.numExpens, 0);
+
+    console.log(localData, bud, ans);
+
+    document.getElementById("span2").innerHTML = ans;
+    document.getElementById("span3").innerHTML = bud - ans;
+
+
+}
+
+const handleEdit = (i) => {
+    let localData = JSON.parse(localStorage.getItem("budget"));
+
+    update = true;
+
+   let editData = i;
+    let fData = localData.filter((e, index) => e.id === i);
+
+    uid = fData[0].id;
+    console.log(fData);
+
+    document.getElementById("expense").value = fData[0].name;
+    document.getElementById("expAmount").value = fData[0].numExpens;
+};
+
+const handleRemove = (i) => {
+    let RemData = document.getElementById("data" + i);
+    arr1 = JSON.parse(localStorage.getItem("budget"));
+    // console.log('bb RemData',RemData);
+    // console.log('b expeAmt',expeAmt)
+    // console.log('b arr1',arr1);
+    RemData.remove();
+
+    // console.log('a RemData',RemData);
+    // console.log('a expeAmt',expeAmt)
+   
+    let removedAmount = 0;
+    arr1.map((e, index) => {
+        if (e.id === i) {
+            arr1.splice(index, 1);
+            removedAmount = e.numExpens
+         
+        } 
+        
+      
+    });
+    // console.log('a arr1',arr1);
+    // console.log('expeAmt',expeAmt)
+    // console.log('removedAmount',removedAmount)
+
+    localStorage.setItem("budget" , JSON.stringify(arr1));
+    handleData1();
+
+};
+
+
+const display = () => {
+     divExtra = document.createElement("div");
+    divExtra.setAttribute("id", "data" + reMath);
+
+   let pElem1 = document.createElement("p");
+   let ptextElm1 = document.createTextNode(expeData);
+    pElem1.appendChild(ptextElm1);
+
+    divExtra.appendChild(pElem1);
+
+   let pElem2 = document.createElement("p");
+   let ptextElm2 = document.createTextNode(expeAmt1);
+    pElem2.appendChild(ptextElm2);
+    // let divRef22 = document.getElementById("data22");
+
+    divExtra.appendChild(pElem2);
+
+   let bElem3 = document.createElement("button");
+  let  btextElm3 = document.createTextNode("X");
+    bElem3.appendChild(btextElm3);
+    bElem3.setAttribute("onclick", "handleRemove(" + reMath + ")");
+    // let divRef33 = document.getElementById("data33");
+    divExtra.appendChild(bElem3);
+
+    bElem4 = document.createElement("button");
+    btextElm4 = document.createTextNode("Edit");
+    bElem4.appendChild(btextElm4);
+    bElem4.setAttribute("onclick", "handleEdit(" + reMath + ")");
+    // let divRef44 = document.getElementById("data44");
+    divExtra.appendChild(bElem4);
+
+    let divRef11 = document.getElementById("data11");
+    divRef11.appendChild(divExtra);
+};
+
+const handleExps = () => {
+    expeData = document.getElementById("expense").value;
+    expeAmt1 = parseInt(document.getElementById("expAmount").value);
+
+    // let divRef1 = document.getElementById("data2");
+    spanElem1.setAttribute("id", "span2");
+    expeAmt = expeAmt + expeAmt1;
+    console.log("expeAmt", expeAmt1);
+    document.getElementById("span2").innerHTML = "$ " + expeAmt;
+
+    spanElem2.setAttribute("id", "span3");
+
+    document.getElementById("span3").innerHTML = " $ " + (budgetData -= expeAmt1);
+
+    reMath = Math.floor(Math.random() * 1000);
+    arr1.push({
+        id: reMath,
+        name: expeData,
+        numExpens: expeAmt1,
+    });
+
+    display();
+
+    localStorage.setItem("budget" , JSON.stringify(arr1));
+    handleData1();
+    event.preventDefault();
+};
+
+
+const handleCost = () => {
+    if (update) {
+        handleupdatedata();
+    } else {
+        handleExps();
+    }
+};
+
+costRef.addEventListener("submit", handleCost);
+
+
+window.onload = getBudgetData; -->
