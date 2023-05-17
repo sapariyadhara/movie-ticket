@@ -6,7 +6,7 @@ const handlecinema = () => {
     
 }
 
-let movieRef = document.getElementById("movie-add")
+let cinemaRef = document.getElementById("cinema-add")
 let arr = [] , cupdate = false;
 let uid = null;
 
@@ -15,13 +15,13 @@ const handleupdateCinema = () => {
     let localData = JSON.parse(localStorage.getItem("cinema"))
     console.log(localData);
 
-    let ucmovie = document.getElementById("movie").value
+    let uccinema = document.getElementById("cinema").value
     let uclocat = document.getElementById("location").value
     let ucfacility = document.getElementById("facility").value
 
     let perentElem = document.getElementById("data-" + uid)
 
-    perentElem.children[0].textContent = ucmovie;
+    perentElem.children[0].textContent = uccinema;
     perentElem.children[1].textContent = uclocat;
     perentElem.children[2].textContent = ucfacility;
 
@@ -31,7 +31,7 @@ const handleupdateCinema = () => {
         if (a.id === uid) {
             return {
                 id: uid,
-                name : ucmovie ,
+                name : uccinema ,
                 location : uclocat , 
                 facility : ucfacility ,
             }
@@ -59,7 +59,7 @@ const handleEdit = (i) => {
    // console.log(cineData);
    uid = cineData[0].id;
 
-   document.getElementById("movie").value = cineData[0].name;
+   document.getElementById("cinema").value = cineData[0].name;
    document.getElementById("location").value = cineData[0].location;
    document.getElementById("facility").value = cineData[0].facility;
 
@@ -86,15 +86,15 @@ const handleRemove = (i) => {
 
 }
 
-const handleMovies = () => {
-    let movieData = document.getElementById("movie").value
+const handleCinema = () => {
+    let cinemaData = document.getElementById("cinema").value
     let locationData = document.getElementById("location").value
     let facilityData = document.getElementById("facility").value
 
     let rMd = Math.floor(Math.random() * 1000);
     arr.push({
         id : rMd ,
-        name : movieData ,
+        name : cinemaData ,
         location : locationData , 
         facility : facilityData ,
     })
@@ -110,7 +110,7 @@ const handleMovies = () => {
     let rbElem = document.createElement("button");
     let ebElem = document.createElement("button");  
 
-    let tdtextElem1 = document.createTextNode(movieData);
+    let tdtextElem1 = document.createTextNode(cinemaData);
     let tdtextElem2 = document.createTextNode(locationData);
     let tdtextElem3 = document.createTextNode(facilityData);
   
@@ -136,7 +136,7 @@ const handleMovies = () => {
     rbElem.appendChild(rbtextElem);
     ebElem.appendChild(ebtextElem);
 
-    let tbodyElem = document.getElementById("trMovie");
+    let tbodyElem = document.getElementById("trCinema");
     tbodyElem.appendChild(trElem);
 
 
@@ -151,7 +151,7 @@ const handleCineDese = () => {
     if (cupdate) {
         handleupdateCinema();
     } else {
-        handleMovies();
+        handleCinema();
     }
 }
 
@@ -161,10 +161,10 @@ const getlocalCineData = () => {
    
     if(ciData != null){
        
-        let disp ;
+        let disp = '' ;
         ciData.map(( v ) => {
 
-        disp += '<tr id="data-'+ v.id + '"> ';
+        disp += '<tr id='+ "data-" + v.id + '> ';
         disp += '<td>' + v.name + '</td>';
         disp += '<td>' + v.location + '</td>';
         disp += '<td>' + v.facility + '</td>';
@@ -173,12 +173,12 @@ const getlocalCineData = () => {
         disp += '</tr>';
         })
        
-        document.getElementById("trMovie").innerHTML = disp
+        document.getElementById("trCinema").innerHTML = disp
 
     }
 }
 
-movieRef.addEventListener("submit" , handleCineDese)
+cinemaRef.addEventListener("submit" , handleCineDese)
 
 window.onload = getlocalCineData
 
