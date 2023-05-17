@@ -15,7 +15,7 @@ const handleupdateCinema = () => {
     let uclocat = document.getElementById("location").value
     let ucfacility = document.getElementById("facility").value
 
-    let perentElem = document.getElementById("data" + uid)
+    let perentElem = document.getElementById("data-" + uid)
 
     perentElem.children[0].textContent = ucmovie;
     perentElem.children[1].textContent = uclocat;
@@ -40,7 +40,7 @@ const handleupdateCinema = () => {
     cupdate = false;
     uid = null
 
-    localStorage.setItem("budget" , JSON.stringify(cineupData));
+    localStorage.setItem("cinema" , JSON.stringify(cineupData));
 
 
    event.preventDefault();
@@ -64,7 +64,7 @@ const handleEdit = (i) => {
 }
 
 const handleRemove = (i) => {
-    let remvData = document.getElementById("data" + i);
+    let remvData = document.getElementById("data-" + i);
     arr = JSON.parse(localStorage.getItem("cinema"))
     console.log('remvData',remvData);
     remvData.remove();
@@ -96,7 +96,7 @@ const handleMovies = () => {
     })
 
     let trElem = document.createElement("tr");
-    trElem.setAttribute("id" , "data" + rMd)
+    trElem.setAttribute("id" , "data-"+rMd)
 
     let tdElem1 = document.createElement("td");
     let tdElem2 = document.createElement("td");
@@ -154,19 +154,21 @@ const handleCineDese = () => {
 const getlocalCineData = () => {
     let ciData = JSON.parse(localStorage.getItem("cinema"))
     console.log("get local" , ciData);
-
+   
     if(ciData != null){
-        let disp = '<tr>'
-        ciData.map(( v , i) => {
        
+        let disp ;
+        ciData.map(( v ) => {
+
+        disp += '<tr id="data-'+ v.id + '"> ';
         disp += '<td>' + v.name + '</td>';
         disp += '<td>' + v.location + '</td>';
         disp += '<td>' + v.facility + '</td>';
         disp += '<td>' + '<button onclick="handleRemove(' + v.id + ')"> X </button>' + '</td>';
         disp += '<td>' + '<button onclick="handleEdit(' + v.id + ')"> Edit </button>' + '</td>';
-
-        })
         disp += '</tr>';
+        })
+       
         document.getElementById("trMovie").innerHTML = disp
 
     }

@@ -16,7 +16,7 @@ const handleLogin = () => {
     if (v.email == email1Ref && v.pass == pass1Ref) {
       // alert("Successfully Regestered")
       correct = true;
-  console.log("correct", correct);
+      console.log("correct", correct);
 
     }
   });
@@ -34,14 +34,15 @@ const handleLogin = () => {
   if (email1Ref == admin.adEmail && pass1Ref == admin.adPass) {
     console.log("im if admin.adEmail", admin.adEmail);
     //location.reload();
-     window.location =  "http://127.0.0.1:5500/userhome.html";
+    window.location = "http://127.0.0.1:5500/userhome.html";
     // location.replace("http://127.0.0.1:5500/adminhome.html");
   } else {
     if (correct) {
       console.log("else admin.adEmail", admin.adPass);
       alert("Successfully Registered");
-      location.replace("http://127.0.0.1:5500/user/userhome.html");
-      return true;
+      window.location = '../user/userhome.html'
+      // location.replace("http://127.0.0.1:5500/user/userhome.html");
+      // return true;
     } else {
       alert("Not Matched");
       return false;
