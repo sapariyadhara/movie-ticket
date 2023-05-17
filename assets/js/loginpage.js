@@ -1,4 +1,6 @@
-// let loginRef = document.getElementById("login");
+
+
+let loginRef = document.getElementById("login");
 
 const handleLogin = () => {
   let email1Ref = document.getElementById("email1").value;
@@ -14,7 +16,6 @@ const handleLogin = () => {
   data.map((v) => {
     console.log("v", v.email);
     if (v.email == email1Ref && v.pass == pass1Ref) {
-      // alert("Successfully Regestered")
       correct = true;
       console.log("correct", correct);
 
@@ -31,43 +32,32 @@ const handleLogin = () => {
   console.log("admin.adEmail", pass1Ref);
   console.log("vvvcorrect", correct);
 
-  if (email1Ref == admin.adEmail && pass1Ref == admin.adPass) {
+  if (email1Ref === 'abc@gmail.com' && pass1Ref === '12345') {
     console.log("im if admin.adEmail", admin.adEmail);
-    //location.reload();
-    window.location = "http://127.0.0.1:5500/userhome.html";
-    // location.replace("http://127.0.0.1:5500/adminhome.html");
+    alert("Admin Login Successfully")
+    window.location = "../admin/adminhome.html"
   } else {
     if (correct) {
       console.log("else admin.adEmail", admin.adPass);
       alert("Successfully Registered");
       window.location = '../user/userhome.html'
-      // location.replace("http://127.0.0.1:5500/user/userhome.html");
-      // return true;
+
     } else {
       alert("Not Matched");
-      return false;
     }
   }
   console.log("end", pass1Ref);
-  // data.map((v) => {
-  //     if(v.email === email1Ref && v.pass === pass1Ref) {
-  //         // alert("Successfully Regestered")
-  //         correct = true ;
-  //      }
-  // });
+
 
   console.log(correct);
 
-  // if(correct){
-  //     alert("Successfully Registered")
-  //     // window.location = "http://127.0.0.1:5500/adminpage.html";
-  //     // location.replace("adminpage.html");
 
-  //     return true;
-  // } else {
-  //     alert("Not Matched")
-  //     return false;
-  // }
+
+  event.preventDefault()
 };
 
-// loginRef.addEventListener("submit" , handleLogin);
+loginRef.addEventListener("submit", handleLogin);
+
+
+
+

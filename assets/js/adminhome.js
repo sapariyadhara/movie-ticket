@@ -1,5 +1,9 @@
+// Add Cinema 
+
 const handlecinema = () => {
-    document.getElementById("addmovie").style.display = "block"
+    document.getElementById("addCinema").style.display = "block"
+    document.getElementById("addMovie").style.display = "none"
+    
 }
 
 let movieRef = document.getElementById("movie-add")
@@ -177,3 +181,10 @@ const getlocalCineData = () => {
 movieRef.addEventListener("submit" , handleCineDese)
 
 window.onload = getlocalCineData
+
+
+const handleMovie = () => {
+    console.log("addMovie");
+    document.getElementById("addMovie").style.display = "block"
+    document.getElementById("addCinema").style.display = "none"
+}
