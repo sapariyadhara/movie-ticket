@@ -3,14 +3,69 @@ const handlecinema = () => {
 }
 
 let movieRef = document.getElementById("movie-add")
-let arr = [] ;
+let arr = [] , cupdate = false;
+let uid = null;
+
+const handleupdateCinema = () => {
+    console.log('handleupdateCinema');
+    let localData = JSON.parse(localStorage.getItem("cinema"))
+    console.log(localData);
+
+    let ucmovie = document.getElementById("movie").value
+    let uclocat = document.getElementById("location").value
+    let ucfacility = document.getElementById("facility").value
+
+    let perentElem = document.getElementById("data" + uid)
+
+    perentElem.children[0].textContent = ucmovie;
+    perentElem.children[1].textContent = uclocat;
+    perentElem.children[2].textContent = ucfacility;
+
+    console.log(arr , uid);
+
+    let cineupData = localData.map((a) => {
+        if (a.id === uid) {
+            return {
+                id: uid,
+                name : ucmovie ,
+                location : uclocat , 
+                facility : ucfacility ,
+            }
+        } else {
+            return a;
+        }
+    });
+
+    console.log(cineupData);
+    cupdate = false;
+    uid = null
+
+    localStorage.setItem("budget" , JSON.stringify(cineupData));
+
+
+   event.preventDefault();
+}
 
 const handleEdit = (i) => {
+    
+    let localData = JSON.parse(localStorage.getItem("cinema"));
+    cupdate = true ;
     let editData = i ;
+    let cineData = localData.filter((e , index) => e.id === i);
+   // console.log(cineData);
+   uid = cineData[0].id;
+
+   document.getElementById("movie").value = cineData[0].name;
+   document.getElementById("location").value = cineData[0].location;
+   document.getElementById("facility").value = cineData[0].facility;
+
+
+
 }
 
 const handleRemove = (i) => {
     let remvData = document.getElementById("data" + i);
+    arr = JSON.parse(localStorage.getItem("cinema"))
     console.log('remvData',remvData);
     remvData.remove();
 
@@ -22,6 +77,8 @@ const handleRemove = (i) => {
         } 
     });
     console.log('arr',arr);
+
+    localStorage.setItem("cinema" , JSON.stringify(arr))
 
 }
 
@@ -82,10 +139,39 @@ const handleMovies = () => {
 
 
     console.log(arr);
-  
+    localStorage.setItem("cinema" , JSON.stringify(arr));
     event.preventDefault();
 }
 
+const handleCineDese = () => {
+    if (cupdate) {
+        handleupdateCinema();
+    } else {
+        handleMovies();
+    }
+}
 
+const getlocalCineData = () => {
+    let ciData = JSON.parse(localStorage.getItem("cinema"))
+    console.log("get local" , ciData);
 
-movieRef.addEventListener("submit" , handleMovies)
+    if(ciData != null){
+        let disp = '<tr>'
+        ciData.map(( v , i) => {
+       
+        disp += '<td>' + v.name + '</td>';
+        disp += '<td>' + v.location + '</td>';
+        disp += '<td>' + v.facility + '</td>';
+        disp += '<td>' + '<button onclick="handleRemove(' + v.id + ')"> X </button>' + '</td>';
+        disp += '<td>' + '<button onclick="handleEdit(' + v.id + ')"> Edit </button>' + '</td>';
+
+        })
+        disp += '</tr>';
+        document.getElementById("trMovie").innerHTML = disp
+
+    }
+}
+
+movieRef.addEventListener("submit" , handleCineDese)
+
+window.onload = getlocalCineData
