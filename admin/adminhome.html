@@ -37,11 +37,11 @@
             margin: 10px auto;
             
         }
-        #addCinema{
+        /* #addCinema{
             display: none;
-        }
+        } */
         #addMovie{
-            display: none;
+            /* display: none; */
         }
     </style>
 </head>
@@ -49,16 +49,16 @@
     <div class="container">
         <div id="data">
             <h1>Admin</h1>
-            <button onclick="handlecinema()">Add Cinema</button>
+            <button  onclick="handlecinema()">Add Cinema</button>
             <br><br>
             <button onclick="handleMovie()">Add Movie</button>
         </div>
 
-        <div id="list">
+        <!-- <div id="list">
             <div id="addCinema">
                 <form  method="post" id="cinema-add">
                     <br><br>
-                    <label for=""> Movie Name</label><br>
+                    <label for=""> Cinema Name</label><br>
                     <input type="text" name="name" id="cinema" placeholder="Please Enter Cinema Name: ">
                     <br><br>
         
@@ -72,14 +72,14 @@
                     <input type="text" name="name" id="facility" placeholder="Please Enter Facility: ">
                     <br><br>
         
-                    <input type="submit" value="Add Movie">
+                    <input type="submit" value="Add Cinema">
                 </form>
 
 
                 <table class="table">
                 
                     <tr>
-                      <!-- <th scope="col">#</th> -->
+                     
                       <th scope="col">Movies</th>
                       <th scope="col">Location</th>
                       <th scope="col">Facility</th>
@@ -99,14 +99,22 @@
                     <br><br>
 
                     <label for="">Description</label><br>
-                    <input type="text" name="name" id="movie" placeholder="Please Enter  Movie Description: ">
+                    <textarea name="" id="" cols="70" rows="5"></textarea>
                     <br><br>
+
+                    <label for="">Choose Cinema</label> 
+                    <select name="movieN" id="movieN">
+                        
+                    </select>
+
+                    <br><br>
+                    <input type="submit" value="Submit">
             </div>
         
            
         
         </div>
-    </div>
+    </div> -->
 
     <script src="../assets/js/adminhome.js"></script>
 </body>

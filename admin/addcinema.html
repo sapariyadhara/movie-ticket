@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    
+  
+        <div id="addCinema">
+            <form  method="post" id="cinema-add">
+                <br><br>
+                <label for=""> Cinema Name</label><br>
+                <input type="text" name="name" id="cinema" placeholder="Please Enter Cinema Name: ">
+                <br><br>
+    
+    
+                <label for="">Cinema Location </label><br>
+                <input type="text" name="location" id="location" placeholder="Please Enter Cinema Location: ">
+                <br><br>
+    
+    
+                <label for="">Facility</label><br>
+                <input type="text" name="name" id="facility" placeholder="Please Enter Facility: ">
+                <br><br>
+    
+                <input type="submit" value="Add Cinema">
+            </form>
+
+
+            <table class="table">
+            
+                <tr>
+               
+                  <th scope="col">Movies</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Facility</th>
+                </tr>
+              
+              <tbody id="trCinema">
+                
+              </tbody>
+            </table>
+        </div>
+
+    <script src="../assets/js/addcinema.js"></script>
+</body>
+</html>
