@@ -23,14 +23,24 @@
             <br><br>
 
             <label for="">Choose Cinema</label>
-            <select name="movieN" id="movieN">
-                <!-- <option value="0"> Select Cinema </option> -->
-
+            <select name="CinemaN" id="cinemaN">
+                <option value="0"> Select Cinema </option>
             </select>
 
             <br><br>
-            <input type="submit" value="Submit">
+            <div id="addtime">
+                <label for="time">Time</label>
+                <input type="text" name="time" id="time">
+                <input type="button" value="+" id="btnadd" onclick="handleAddBtn()">
+            </div>
 
+            <br><br>
+            <label for="poster">Poster</label>
+            <input type="file" id="imgP">
+    
+            <br><br>
+            <input type="submit" value="Submit">
+            <br><br>
         </form>
     </div>
 
