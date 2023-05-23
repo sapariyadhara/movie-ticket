@@ -111,73 +111,55 @@ const handleEdit = (i) => {
     let getlMdata = JSON.parse(localStorage.getItem("movie"))
     console.log("get movie data" ,getlMdata);
 
+    let tdivRef = document.getElementById("addtime")
 
-    update = true;
-    let mArr = JSON.parse(localStorage.getItem("movie"));
-    console.log(mArr);
-    vid = i;
+   let fData =  getlMdata.filter((a) =>  a.id === i)
+   console.log(fData);
 
-    mArr.map((v, index) => {
-        if (v.id === i) {
-            document.getElementById("movie").value = mArr[index].mName;
-            document.getElementById("decrpt").value = mArr[index].decrpt;
-        }
-    })
+   while (tdivRef.firstChild) {
+        tdivRef.removeChild(tdivRef.firstChild)
+   }
+
+   for(let i = 0 ; i < getlMdata[i].time.length ; i++){
+        handleTime()
+   }
+
+   let mtime = document.getElementById("time")
 
 
-
-
- // console.log(l);
-
-//     // let getlocalMdata = JSON.parse(localStorage.getItem("moviee"))
-//     // console.log("moviedata get", getlocalMdata);
-
-//     // // for(i=0 ; i < getlocalMdata[l].length;i++){
-//     // //     console.log(l);
-//     // // }
-//     // console.log(rm);
-//     // mupdate = true;
-
-//     // let mdata = getlocalMdata.filter((a) => a.id === rm)
-//     // console.log(mdata);
-
-//     // muid = rm
-
-//     let divreff =  document.getElementById("plastime")
-
-//     while (divreff.firstChild) {
-//         divreff.removeChild(divreff.firstChild)
-//     }
-}
-
-const handleUpdatedata = () => {
-    let mArr = JSON.parse(localStorage.getItem("movie"));
-
-    let name = document.getElementById("movie").value;
-    let description = document.getElementById("decrpt").value;
-
-    let ParentElem = document.getElementById("mData-" + vid);
-    ParentElem.children[0].textContent = name;
-    ParentElem.children[1].textContent = description;
-
-    index = mArr.findIndex((obj => obj.id === vid));
-    mArr[index].name = name;
-    mArr[index].description = description;
-
-    update = false;
-    vid = null;
-    localStorage.setItem("movie", JSON.stringify(mArr));
-    event.preventDefault();
+    // mArr.map((v, index) => {
+    //     if (v.id === i) {
+    //         document.getElementById("movie").value = mArr[index].mName;
+    //         document.getElementById("decrpt").value = mArr[index].decrpt;
+    //     }
+    // })
 
 }
+
+// const handleUpdatedata = () => {
+//     let mArr = JSON.parse(localStorage.getItem("movie"));
+
+//     let name = document.getElementById("movie").value;
+//     let description = document.getElementById("decrpt").value;
+
+//     let ParentElem = document.getElementById("mData-" + vid);
+//     ParentElem.children[0].textContent = name;
+//     ParentElem.children[1].textContent = description;
+
+//     index = mArr.findIndex((obj => obj.id === vid));
+//     mArr[index].name = name;
+//     mArr[index].description = description;
+
+//     update = false;
+//     vid = null;
+//     localStorage.setItem("movie", JSON.stringify(mArr));
+//     event.preventDefault();
+
+// }
 
 const handlegetCinema = () => {
     let getCinemaData = JSON.parse(localStorage.getItem("cinema"));
-    console.log("get data", getCinemaData);
-    
-    let getlocalMvdata = JSON.parse(localStorage.getItem("movie"))
-    console.log("window get data", getlocalMdata);
-
+    console.log("get data111", getCinemaData);
     
 
     if (getCinemaData != null) {
@@ -187,22 +169,22 @@ const handlegetCinema = () => {
         });
         document.getElementById("cinemaN").innerHTML = mdisp;
     }
-
-
     
-    
+    let getlocalMvdata = JSON.parse(localStorage.getItem("movie"))
+    console.log("window get data", getlocalMvdata);
+   
 
     if(getlocalMvdata != null){
         let mdisp = ''
         getlocalMvdata.map((m) => {
-            mdisp += '<tr id"=mData-'+ m.id + ' ">'
+            mdisp += '<tr id= "mData-'+ m.id +' ">'
             mdisp += '<td>' + m.mName + '</td>'
             mdisp += '<td>' + m.decrpt + '</td>'
             mdisp += '<td>' + m.Cname + '</td>'
             mdisp += '<td>' + m.time + '</td>'
             mdisp += '<td>' + m.poster + '</td>'
             mdisp += '<td>' +  '<button onclick="handleRemove(' + m.id + ')"> X </button>' + '</td>'
-            mdisp += '<td>' +  '<button onclick="handleEdit(' + m.id + ')"> X </button>' + '</td>'
+            mdisp += '<td>' +  '<button onclick="handleEdit(' + m.id + ')"> Edit </button>' + '</td>'
             mdisp += '</tr>'
         })
         document.getElementById("trMovie").innerHTML = mdisp 
