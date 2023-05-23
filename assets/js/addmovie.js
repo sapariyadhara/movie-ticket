@@ -1,6 +1,8 @@
 let movieRef = document.getElementById("add_movie");
 
 let arr = [];
+let vid = null;
+let update = false;
 
 
 
@@ -110,6 +112,19 @@ const handleEdit = (i) => {
     console.log("get movie data" ,getlMdata);
 
 
+    update = true;
+    let mArr = JSON.parse(localStorage.getItem("movie"));
+    console.log(mArr);
+    vid = i;
+
+    mArr.map((v, index) => {
+        if (v.id === i) {
+            document.getElementById("movie").value = mArr[index].mName;
+            document.getElementById("decrpt").value = mArr[index].decrpt;
+        }
+    })
+
+
 
 
  // console.log(l);
@@ -135,10 +150,35 @@ const handleEdit = (i) => {
 //     }
 }
 
+const handleUpdatedata = () => {
+    let mArr = JSON.parse(localStorage.getItem("movie"));
+
+    let name = document.getElementById("movie").value;
+    let description = document.getElementById("decrpt").value;
+
+    let ParentElem = document.getElementById("mData-" + vid);
+    ParentElem.children[0].textContent = name;
+    ParentElem.children[1].textContent = description;
+
+    index = mArr.findIndex((obj => obj.id === vid));
+    mArr[index].name = name;
+    mArr[index].description = description;
+
+    update = false;
+    vid = null;
+    localStorage.setItem("movie", JSON.stringify(mArr));
+    event.preventDefault();
+
+}
+
 const handlegetCinema = () => {
     let getCinemaData = JSON.parse(localStorage.getItem("cinema"));
-
     console.log("get data", getCinemaData);
+    
+    let getlocalMvdata = JSON.parse(localStorage.getItem("movie"))
+    console.log("window get data", getlocalMdata);
+
+    
 
     if (getCinemaData != null) {
         let mdisp = "";
@@ -149,8 +189,7 @@ const handlegetCinema = () => {
     }
 
 
-    let getlocalMvdata = JSON.parse(localStorage.getItem("movie"))
-    console.log("window get data", getlocalMdata);
+    
     
 
     if(getlocalMvdata != null){
@@ -216,7 +255,16 @@ const handleMinbtn = (i) => {
     event.preventDefault()
 }
 
-movieRef.addEventListener("submit", handleMovie);
+
+const handleDisc = () => {
+    if (update) {
+        handleUpdatedata();
+    } else {
+        handleMovie();
+    }
+}
+
+movieRef.addEventListener("submit", handleDisc);
 window.onload = handlegetCinema;
 
 
