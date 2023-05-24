@@ -137,21 +137,39 @@ const handleEdit = (i) => {
         mtime[i].value = fData[0].time[i]
     }
 
+    fData.map((v, index) => {
+        if (v.id === i) {
+            document.getElementById("movie").value = fData[0].mName;
+            document.getElementById("decrpt").value = fData[0].decrpt;
+            document.getElementById("imgP").value = fData[0].poster;
 
-
-
-
-    // fData.map((v, index) => {
-    //     if (v.id === i) {
-    //         document.getElementById("movie").value = fData[0].mName;
-    //         document.getElementById("decrpt").value = fData[0].decrpt;
-    //     }
-    // })
+        }
+    })
 
 
 }
 
- 
+const handleUpdatedata = () => {
+    let mArr = JSON.parse(localStorage.getItem("movie"));
+
+    let name = document.getElementById("movie").value;
+    let description = document.getElementById("decrpt").value;
+
+    let ParentElem = document.getElementById("mData-" + vid);
+    ParentElem.children[0].textContent = name;
+    ParentElem.children[1].textContent = description;
+
+    index = mArr.findIndex((obj => obj.id === vid));
+    mArr[index].name = name;
+    mArr[index].description = description;
+
+    update = false;
+    vid = null;
+    localStorage.setItem("movie", JSON.stringify(mArr));
+    event.preventDefault();
+
+}
+
 const handlegetCinema = () => {
     let getCinemaData = JSON.parse(localStorage.getItem("cinema"));
     console.log("get data111", getCinemaData);
