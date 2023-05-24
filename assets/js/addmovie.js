@@ -25,7 +25,7 @@ const handleMovie = () => {
 
     console.log(timeM);
     arr.push({
-        id: movieRnd,
+        mid: movieRnd,
         mName: mvData,
         decrpt: decrptData,
         Cname: cinemaData,
@@ -97,7 +97,7 @@ const handleRemove = (i) => {
     let removData = document.getElementById("mData-" + i)
 
     arr.map((v, index) => {
-        if (v.id === i) {
+        if (v.mid === i) {
             arr.splice(index, 1)
         }
     })
@@ -116,7 +116,7 @@ const handleEdit = (i) => {
 
    
 
-    let fData = getlMdata.filter((a) => a.id === i)
+    let fData = getlMdata.filter((a) => a.mid === i)
     console.log("fdata" ,fData[0]);
 
     let mtime = document.getElementsByName("time")
@@ -138,7 +138,7 @@ const handleEdit = (i) => {
     }
 
     fData.map((v, index) => {
-        if (v.id === i) {
+        if (v.mid === i) {
             document.getElementById("movie").value = fData[0].mName;
             document.getElementById("decrpt").value = fData[0].decrpt;
             document.getElementById("imgP").value = fData[0].poster;
@@ -159,7 +159,7 @@ const handleUpdatedata = () => {
     ParentElem.children[0].textContent = name;
     ParentElem.children[1].textContent = description;
 
-    index = mArr.findIndex((obj => obj.id === vid));
+    index = mArr.findIndex((obj => obj.mid === vid));
     mArr[index].name = name;
     mArr[index].description = description;
 
@@ -178,7 +178,7 @@ const handlegetCinema = () => {
     if (getCinemaData != null) {
         let mdisp = "";
         getCinemaData.map((v) => {
-            mdisp += "<option value =" + v.id + ">" + v.name + "</option>";
+            mdisp += "<option value =" + v.cid + ">" + v.name + "</option>";
         });
         document.getElementById("cinemaN").innerHTML = mdisp;
     }
@@ -190,14 +190,14 @@ const handlegetCinema = () => {
     if (getlocalMvdata != null) {
         let mdisp = ''
         getlocalMvdata.map((m) => {
-            mdisp += '<tr id= "mData-' + m.id + ' ">'
+            mdisp += '<tr id= "mData-' + m.mid + ' ">'
             mdisp += '<td>' + m.mName + '</td>'
             mdisp += '<td>' + m.decrpt + '</td>'
             mdisp += '<td>' + m.Cname + '</td>'
             mdisp += '<td>' + m.time + '</td>'
             mdisp += '<td>' + m.poster + '</td>'
-            mdisp += '<td>' + '<button onclick="handleRemove(' + m.id + ')"> X </button>' + '</td>'
-            mdisp += '<td>' + '<button onclick="handleEdit(' + m.id + ')"> Edit </button>' + '</td>'
+            mdisp += '<td>' + '<button onclick="handleRemove(' + m.mid + ')"> X </button>' + '</td>'
+            mdisp += '<td>' + '<button onclick="handleEdit(' + m.mid + ')"> Edit </button>' + '</td>'
             mdisp += '</tr>'
         })
         document.getElementById("trMovie").innerHTML = mdisp

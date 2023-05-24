@@ -26,9 +26,9 @@ const handleupdateCinema = () => {
     console.log(arr , uid);
 
     let cineupData = localData.map((a) => {
-        if (a.id === uid) {
+        if (a.cid === uid) {
             return {
-                id: uid,
+                cid: uid,
                 name : uccinema ,
                 location : uclocat , 
                 facility : ucfacility ,
@@ -53,9 +53,9 @@ const handleEdit = (i) => {
     let localData = JSON.parse(localStorage.getItem("cinema"));
     cupdate = true ;
     let editData = i ;
-    let cineData = localData.filter((e , index) => e.id === i);
+    let cineData = localData.filter((e , index) => e.cid === i);
    // console.log(cineData);
-   uid = cineData[0].id;
+   uid = cineData[0].cid;
 
    document.getElementById("cinema").value = cineData[0].name;
    document.getElementById("location").value = cineData[0].location;
@@ -73,7 +73,7 @@ const handleRemove = (i) => {
 
 
     arr.map((e , index) => {
-        if (e.id === i) {
+        if (e.cid === i) {
             arr.splice(index, 1);
         
         } 
@@ -91,7 +91,7 @@ const handleCinema = () => {
 
     let rMd = Math.floor(Math.random() * 1000);
     arr.push({
-        id : rMd ,
+        cid : rMd ,
         name : cinemaData ,
         location : locationData , 
         facility : facilityData ,
@@ -162,12 +162,12 @@ const getlocalCineData = () => {
         let disp = '' ;
         ciData.map(( v ) => {
 
-        disp += '<tr id='+ "data-" + v.id + '> ';
+        disp += '<tr id='+ "data-" + v.cid + '> ';
         disp += '<td>' + v.name + '</td>';
         disp += '<td>' + v.location + '</td>';
         disp += '<td>' + v.facility + '</td>';
-        disp += '<td>' + '<button onclick="handleRemove(' + v.id + ')"> X </button>' + '</td>';
-        disp += '<td>' + '<button onclick="handleEdit(' + v.id + ')"> Edit </button>' + '</td>';
+        disp += '<td>' + '<button onclick="handleRemove(' + v.cid + ')"> X </button>' + '</td>';
+        disp += '<td>' + '<button onclick="handleEdit(' + v.cid + ')"> Edit </button>' + '</td>';
         disp += '</tr>';
         })
        
