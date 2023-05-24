@@ -66,8 +66,9 @@ const handleEdit = (i) => {
 }
 
 const handleRemove = (i) => {
-    let remvData = document.getElementById("data-" + i);
+    
     arr = JSON.parse(localStorage.getItem("cinema"))
+    let remvData = document.getElementById("data-" + i);
     console.log('remvData',remvData);
     remvData.remove();
 
@@ -174,6 +175,7 @@ const getlocalCineData = () => {
         document.getElementById("trCinema").innerHTML = disp
 
     }
+ 
 }
 
 cinemaRef.addEventListener("submit" , handleCineDese)

@@ -202,6 +202,8 @@ const handlegetCinema = () => {
         })
         document.getElementById("trMovie").innerHTML = mdisp
     }
+
+ 
 }
 
 const handleTime = () => {
