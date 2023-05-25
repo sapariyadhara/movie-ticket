@@ -41,6 +41,30 @@ const handlegetCinema = () => {
         document.getElementById("cinemaN").innerHTML = mdisp;
     }
 
+    let localSdata = JSON.parse(localStorage.getItem("seat"))
+
+    console.log(localSdata);
+
+    if(localSdata != null){
+       
+        let disp = '' ;
+        localSdata.map(( v ) => {
+
+        disp += '<tr id='+ "sData-" + v.sid + '> ';
+        disp += '<td>' + v.cid + '</td>';
+        disp += '<td>' + v.mid + '</td>';
+        disp += '<td>' + v.time + '</td>';
+        disp += '<td>' + v.seat.length + '</td>';
+        disp += '<td>' + '<button onclick="handleRemove(' + v.sid + ')"> X </button>' + '</td>';
+        disp += '<td>' + '<button onclick="handleEdit(' + v.sid + ')"> Edit </button>' + '</td>';
+        disp += '</tr>';
+        })
+       
+      
+        document.getElementById("trSeats").innerHTML = disp
+
+    }
+
 }
 
 const handleChangeMovie = () => {
@@ -61,10 +85,10 @@ const handleChangeMovie = () => {
     if (timeData != null) {
         let dispt = '<option value="0">  Select Time   </option>'
 
-        timeData.map((v , index) => {
+        timeData.map((v, index) => {
 
-            for(let i = 0 ; i < timeData[index].time.length ; i++){
-             dispt += '<option>' + v.time[i] + '</option>'
+            for (let i = 0; i < timeData[index].time.length; i++) {
+                dispt += '<option>' + v.time[i] + '</option>'
             }
         })
         document.getElementById("timeM").innerHTML = dispt;
@@ -75,29 +99,28 @@ const handleChangeMovie = () => {
     console.log(timeData);
 
 
+
 }
 
 const handleSelectSeat = () => {
     let cineData = document.getElementById("cinemaN").value
     let movieData = document.getElementById("movieN").value
     let timeData = document.getElementById("timeM").value
-    let seatNData = document.getElementById("seatN").value
-
-    let arr = []
+    let seatNData = parseInt(document.getElementById("seatN").value)
 
     // let seatsIndex = [...seatNData].map(seatNData => [...seatNData].indexOf(seatNData));
 
-    let seatsIndex = new Array(parseInt(seatNData)+1).join('0').split('').map(parseFloat)
-    console.log(cineData ,movieData ,timeData , seatNData , seatsIndex);
+    let seatsIndex = new Array(seatNData + 1).join('0').split('').map(parseFloat)
+    console.log(cineData, movieData, timeData, seatNData, seatsIndex);
 
     let rnD = Math.floor(Math.random() * 1000)
 
     sArr.push({
-        sid : rnD ,
-        cid : cineData ,
-        mid : movieData ,
-        time : timeData ,
-        seat : seatsIndex
+        sid: rnD,
+        cid: cineData,
+        mid: movieData,
+        time: timeData,
+        seat: seatsIndex
     })
     console.log(sArr);
 
@@ -108,14 +131,14 @@ const handleSelectSeat = () => {
     let mvtd = document.createElement("td");
     let timetd = document.createElement("td");
     let seattd = document.createElement("td");
- 
+
 
     let rBtntd = document.createElement("td");
     let eBtntd = document.createElement("td");
     let rbtnElm = document.createElement("button");
     let ebtnElm = document.createElement("button");
 
-    rbtnElm.setAttribute("onclick", "handleRemove("+ rnD +")");
+    rbtnElm.setAttribute("onclick", "handleRemove(" + rnD + ")");
     ebtnElm.setAttribute("onclick", "handleEdit(" + rnD + ")");
 
     let cineText = document.createTextNode(cineData);
@@ -131,7 +154,7 @@ const handleSelectSeat = () => {
     trElem.appendChild(mvtd);
     trElem.appendChild(timetd);
     trElem.appendChild(seattd);
-  
+
     trElem.appendChild(rBtntd);
     trElem.appendChild(eBtntd);
 
@@ -150,7 +173,7 @@ const handleSelectSeat = () => {
     let trsData = document.getElementById("trSeats");
     trsData.appendChild(trElem);
 
-    localStorage.setItem("seat" , JSON.stringify(sArr))
+    localStorage.setItem("seat", JSON.stringify(sArr))
     event.preventDefault()
 }
 
@@ -163,15 +186,15 @@ const handleRemove = (i) => {
     console.log(remvSData);
     remvSData.remove()
 
-    localSdata.map((e , index) => {
+    localSdata.map((e, index) => {
         if (e.sid === i) {
             localSdata.splice(index, 1);
-        
-        } 
-    });
-    console.log('localSdata',localSdata);
 
-    localStorage.setItem("seat" , JSON.stringify(localSdata))
+        }
+    });
+    console.log('localSdata', localSdata);
+
+    localStorage.setItem("seat", JSON.stringify(localSdata))
 
 
 }
@@ -181,17 +204,86 @@ const handleEdit = (i) => {
     supdate = true
     console.log(localSdata);
 
-    let seatData = localSdata.filter((e , index) => e.sid === i);
+    let seatData = localSdata.filter((e, index) => e.sid === i);
+
+    console.log(seatData[0].sid);
 
     uid = seatData[0].sid
 
-    document.getElementById("cinemaN").select = seatData[0].cineData;
-   document.getElementById("movieN").select = seatData[0].movieData;
-   document.getElementById("timeM").select = seatData[0].timeData;
-//    document.getElementById("seatN").value = seatData[0].seatNData;
+    let cData = seatData[0].cid
+    let mData = seatData[0].mid
+    let tData = seatData[0].time
+    let sData = seatData[0].seat
+
+    console.log(cData, mData, tData, sData);
+
+    document.getElementById("cinemaN").value = cData;
+    document.getElementById("seatN").value = sData.length;
+
+    if (supdate) {
+        handleChangeCinema()
+        document.getElementById("movieN").value = mData;
+        handleChangeMovie()
+        document.getElementById("timeM").value = tData;
+    } else {
+        handleUpdateData()
+    }
 }
+
+const handleUpdateData = () => {
+    let localSdata = JSON.parse(localStorage.getItem("seat"))
+
+    let upCinema = document.getElementById("cinemaN").value
+    let upMovie = document.getElementById("movieN").value
+    let upTime = document.getElementById("timeM").value
+    let upSeat = parseInt(document.getElementById("seatN").value)
+
+    let seatsIndex = new Array(upSeat + 1).join('0').split('').map(parseFloat)
+
+    console.log(upCinema, upMovie, upTime, upSeat);
+
+    let perentElem = document.getElementById("sData-" + uid)
+
+    perentElem.children[0].textContent = upCinema;
+    perentElem.children[1].textContent = upMovie;
+    perentElem.children[2].textContent = upTime;
+    perentElem.children[3].textContent = seatsIndex.length;
+
+    console.log(sArr, uid);
+
+    let supData = localSdata.map((a) => {
+        if (a.sid === uid) {
+            return {
+                sid: uid,
+                cid: upCinema,
+                mid: upMovie,
+                time: upTime,
+                seat: seatsIndex
+            }
+        } else {
+            return a;
+        }
+    });
+
+    supdate = false;
+    uid = null
+
+    localStorage.setItem("seat" , JSON.stringify(supData));
+
+    event.preventDefault()
+}
+
+const handleDesc = () => {
+    if (supdate) {
+        handleUpdateData()
+    } else {
+        handleSelectSeat()
+    }
+}
+
+
 
 cinemaNRef.addEventListener("change", handleChangeCinema)
 movieRef.addEventListener("change", handleChangeMovie)
-enterSeatRef.addEventListener("submit" , handleSelectSeat)
+enterSeatRef.addEventListener("submit", handleDesc)
 window.onload = handlegetCinema
