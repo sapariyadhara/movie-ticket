@@ -4,7 +4,7 @@ let enterSeatRef = document.getElementById("enterSeat");
 
 let uid = null;
 
-let sArr = [];
+
 let supdate = false;
 
 const handleChangeCinema = () => {
@@ -252,7 +252,7 @@ const handleUpdateData = () => {
     perentElem.children[2].textContent = upTime;
     perentElem.children[3].textContent = seatsIndex.length;
 
-    console.log(sArr, uid);
+
 
     let supData = localSdata.map((a) => {
         if (a.sid === uid) {
