@@ -82,10 +82,11 @@ const handleSelectSeat = () => {
     let timeData = document.getElementById("timeM").value
     let seatNData = document.getElementById("seatN").value
 
+    let arr = []
 
-    let seatsIndex = [...seatNData].map(seatNData => [...seatNData].indexOf(seatNData));
+    // let seatsIndex = [...seatNData].map(seatNData => [...seatNData].indexOf(seatNData));
 
-
+    let seatsIndex = new Array(parseInt(seatNData)+1).join('0').split('').map(parseFloat)
     console.log(cineData ,movieData ,timeData , seatNData , seatsIndex);
 
     let rnD = Math.floor(Math.random() * 1000)
