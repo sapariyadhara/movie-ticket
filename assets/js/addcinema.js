@@ -1,13 +1,12 @@
 const handlecinema = () => {
     document.getElementById("addCinema").style.display = "block"
     document.getElementById("addMovie").style.display = "none"
-
+    
 }
 
 let cinemaRef = document.getElementById("cinema-add")
-let cupdate = false;
+let arr = [] , cupdate = false;
 let uid = null;
-
 
 const handleupdateCinema = () => {
     console.log('handleupdateCinema');
@@ -23,14 +22,16 @@ const handleupdateCinema = () => {
     perentElem.children[0].textContent = uccinema;
     perentElem.children[1].textContent = uclocat;
     perentElem.children[2].textContent = ucfacility;
-   
+
+    console.log(arr , uid);
+
     let cineupData = localData.map((a) => {
         if (a.cid === uid) {
             return {
                 cid: uid,
-                name: uccinema,
-                location: uclocat,
-                facility: ucfacility,
+                name : uccinema ,
+                location : uclocat , 
+                facility : ucfacility ,
             }
         } else {
             return a;
@@ -41,87 +42,64 @@ const handleupdateCinema = () => {
     cupdate = false;
     uid = null
 
-    localStorage.setItem("cinema", JSON.stringify(cineupData));
+    localStorage.setItem("cinema" , JSON.stringify(cineupData));
 
 
-    event.preventDefault();
+   event.preventDefault();
 }
 
 const handleEdit = (i) => {
-
+    
     let localData = JSON.parse(localStorage.getItem("cinema"));
-    cupdate = true;
-    let editData = i;
-    let cineData = localData.filter((e, index) => e.cid === i);
-    // console.log(cineData);
-    uid = cineData[0].cid;
+    cupdate = true ;
+    let editData = i ;
+    let cineData = localData.filter((e , index) => e.cid === i);
+   // console.log(cineData);
+   uid = cineData[0].cid;
 
-    document.getElementById("cinema").value = cineData[0].name;
-    document.getElementById("location").value = cineData[0].location;
-    document.getElementById("facility").value = cineData[0].facility;
+   document.getElementById("cinema").value = cineData[0].name;
+   document.getElementById("location").value = cineData[0].location;
+   document.getElementById("facility").value = cineData[0].facility;
 
 
 
 }
 
 const handleRemove = (i) => {
-
+    
     arr = JSON.parse(localStorage.getItem("cinema"))
     let remvData = document.getElementById("data-" + i);
-    console.log('remvData', remvData);
+    console.log('remvData',remvData);
     remvData.remove();
 
 
-    arr.map((e, index) => {
+    arr.map((e , index) => {
         if (e.cid === i) {
             arr.splice(index, 1);
-
-        }
+        
+        } 
     });
-    console.log('arr', arr);
+    console.log('arr',arr);
 
-    localStorage.setItem("cinema", JSON.stringify(arr))
+    localStorage.setItem("cinema" , JSON.stringify(arr))
 
 }
 
 const handleCinema = () => {
-
-    let arr = JSON.parse(localStorage.getItem("cinema"))
-
     let cinemaData = document.getElementById("cinema").value
     let locationData = document.getElementById("location").value
     let facilityData = document.getElementById("facility").value
 
     let rMd = Math.floor(Math.random() * 1000);
-    // arr.push({
-    //     cid : rMd ,
-    //     name : cinemaData ,
-    //     location : locationData , 
-    //     facility : facilityData ,
-    // })
-
-    if (arr === null) {
-        console.log("1");
-        localStorage.setItem("cinema", JSON.stringify([{
-            cid: rMd,
-            name: cinemaData,
-            location: locationData,
-            facility: facilityData,
-        }]));
-    } else {
-        console.log("2");
-        arr.push({
-            cid: rMd,
-            name: cinemaData,
-            location: locationData,
-            facility: facilityData,
-        });
-
-        localStorage.setItem("cinema", JSON.stringify(arr));
-    }
+    arr.push({
+        cid : rMd ,
+        name : cinemaData ,
+        location : locationData , 
+        facility : facilityData ,
+    })
 
     let trElem = document.createElement("tr");
-    trElem.setAttribute("id", "data-" + rMd)
+    trElem.setAttribute("id" , "data-"+rMd)
 
     let tdElem1 = document.createElement("td");
     let tdElem2 = document.createElement("td");
@@ -129,18 +107,18 @@ const handleCinema = () => {
     let tdElem4 = document.createElement("td");
     let tdElem5 = document.createElement("td");
     let rbElem = document.createElement("button");
-    let ebElem = document.createElement("button");
+    let ebElem = document.createElement("button");  
 
     let tdtextElem1 = document.createTextNode(cinemaData);
     let tdtextElem2 = document.createTextNode(locationData);
     let tdtextElem3 = document.createTextNode(facilityData);
-
+  
     let rbtextElem = document.createTextNode("X");
     let ebtextElem = document.createTextNode("Edit");
 
-    rbElem.setAttribute("onclick", "handleRemove(" + rMd + ")");
-    ebElem.setAttribute("onclick", "handleEdit(" + rMd + ")")
-
+    rbElem.setAttribute("onclick" , "handleRemove(" + rMd + ")" );
+    ebElem.setAttribute("onclick" , "handleEdit(" + rMd + ")" )
+  
     trElem.appendChild(tdElem1);
     trElem.appendChild(tdElem2);
     trElem.appendChild(tdElem3);
@@ -164,7 +142,7 @@ const handleCinema = () => {
 
 
     console.log(arr);
-    localStorage.setItem("cinema", JSON.stringify(arr));
+    localStorage.setItem("cinema" , JSON.stringify(arr));
     event.preventDefault();
 }
 
@@ -178,29 +156,29 @@ const handleCineDese = () => {
 
 const getlocalCineData = () => {
     let ciData = JSON.parse(localStorage.getItem("cinema"))
-    console.log("get local", ciData);
+    console.log("get local" , ciData);
+   
+    if(ciData != null){
+       
+        let disp = '' ;
+        ciData.map(( v ) => {
 
-    if (ciData != null) {
-
-        let disp = '';
-        ciData.map((v) => {
-
-            disp += '<tr id=' + "data-" + v.cid + '> ';
-            disp += '<td>' + v.name + '</td>';
-            disp += '<td>' + v.location + '</td>';
-            disp += '<td>' + v.facility + '</td>';
-            disp += '<td>' + '<button onclick="handleRemove(' + v.cid + ')"> X </button>' + '</td>';
-            disp += '<td>' + '<button onclick="handleEdit(' + v.cid + ')"> Edit </button>' + '</td>';
-            disp += '</tr>';
+        disp += '<tr id='+ "data-" + v.cid + '> ';
+        disp += '<td>' + v.name + '</td>';
+        disp += '<td>' + v.location + '</td>';
+        disp += '<td>' + v.facility + '</td>';
+        disp += '<td>' + '<button onclick="handleRemove(' + v.cid + ')"> X </button>' + '</td>';
+        disp += '<td>' + '<button onclick="handleEdit(' + v.cid + ')"> Edit </button>' + '</td>';
+        disp += '</tr>';
         })
-
+       
         document.getElementById("trCinema").innerHTML = disp
 
     }
-
+ 
 }
 
-cinemaRef.addEventListener("submit", handleCineDese)
+cinemaRef.addEventListener("submit" , handleCineDese)
 
 window.onload = getlocalCineData
 
@@ -210,4 +188,3 @@ const handleMovie = () => {
     document.getElementById("addMovie").style.display = "block"
     document.getElementById("addCinema").style.display = "none"
 }
-
