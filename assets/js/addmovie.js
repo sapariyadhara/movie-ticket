@@ -20,10 +20,8 @@ const handleMovie = () => {
     for (let i = 0; i < timeData.length; i++) {
         let valueM = timeData[i].value
         timeM.push(valueM)
-        // timeM.push(timeData[i].value);
     }
 
-    console.log(timeM);
     arr.push({
         mid: movieRnd,
         mName: mvData,
@@ -92,20 +90,25 @@ const handleMovie = () => {
 
 const handleRemove = (i) => {
 
-    arr = JSON.parse(localStorage.getItem("movie"))
+   let  arrR = JSON.parse(localStorage.getItem("movie"))
+
+    console.log(arrR);
 
     let removData = document.getElementById("mData-" + i)
+    removData.remove();
 
-    arr.map((v, index) => {
+    console.log(removData , i);
+
+    arrR.map((v, index) => {
         if (v.mid === i) {
-            arr.splice(index, 1)
+            arrR.splice(index, 1)
         }
     })
 
-    console.log(arr);
-    removData.remove();
+    console.log(arrR);
+   
 
-    localStorage.setItem("movie", JSON.stringify(arr))
+    localStorage.setItem("movie", JSON.stringify(arrR))
 
 }
 
@@ -114,10 +117,8 @@ const handleEdit = (i) => {
     let getlMdata = JSON.parse(localStorage.getItem("movie"))
     console.log("get movie data", getlMdata);
 
-   
-
     let fData = getlMdata.filter((a) => a.mid === i)
-    console.log("fdata" ,fData[0]);
+    console.log("fdata" ,fData[0] );
 
     let mtime = document.getElementsByName("time")
     let tdivRef = document.getElementById("addtime")
@@ -136,16 +137,17 @@ const handleEdit = (i) => {
         console.log("fData11", fData[0].time[i]);
         mtime[i].value = fData[0].time[i]
     }
-
+    
+    vid = fData[0].mid
+    console.log(vid);
     fData.map((v, index) => {
         if (v.mid === i) {
             document.getElementById("movie").value = fData[0].mName;
             document.getElementById("decrpt").value = fData[0].decrpt;
-            document.getElementById("imgP").value = fData[0].poster;
-
+            // document.getElementById("imgP").value = fData[0].poster;
+            document.getElementById("cinemaN").value = fData[0].Cname;
         }
     })
-
 
 }
 
@@ -154,18 +156,36 @@ const handleUpdatedata = () => {
 
     let name = document.getElementById("movie").value;
     let description = document.getElementById("decrpt").value;
+    let cinema = document.getElementById("cinemaN").value;
+    
 
     let ParentElem = document.getElementById("mData-" + vid);
     ParentElem.children[0].textContent = name;
     ParentElem.children[1].textContent = description;
+    ParentElem.children[2].textContent = cinema;
 
-    index = mArr.findIndex((obj => obj.mid === vid));
-    mArr[index].name = name;
-    mArr[index].description = description;
+    // index = mArr.findIndex((obj => obj.mid === vid));
+    // mArr[index].name = name;
+    // mArr[index].description = description;
+    // mArr[index].cinema = cinema;
+
+    let movupData = mArr.map((a) => {
+        if (a.mid === vid) {
+            return {
+                mid: vid,
+                mName : name ,
+                decrpt : description , 
+                Cname : cinema ,
+            }
+        } else {
+            return a;
+        }
+    });
+
 
     update = false;
     vid = null;
-    localStorage.setItem("movie", JSON.stringify(mArr));
+    localStorage.setItem("movie", JSON.stringify(movupData));
     event.preventDefault();
 
 }
