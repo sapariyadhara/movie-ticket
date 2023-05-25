@@ -5,6 +5,7 @@ let enterSeatRef = document.getElementById("enterSeat")
 let uid = null
 
 let sArr = []
+let supdate = false;
 
 const handleChangeCinema = () => {
     console.log("handleChangeCinema");
@@ -101,7 +102,7 @@ const handleSelectSeat = () => {
     console.log(sArr);
 
     let trElem = document.createElement("tr");
-    trElem.setAttribute("id", "sData-");
+    trElem.setAttribute("id", "sData-" + rnD);
 
     let cinetd = document.createElement("td");
     let mvtd = document.createElement("td");
@@ -114,8 +115,8 @@ const handleSelectSeat = () => {
     let rbtnElm = document.createElement("button");
     let ebtnElm = document.createElement("button");
 
-    rbtnElm.setAttribute("onclick", "handleRemove()");
-    ebtnElm.setAttribute("onclick", "handleEdit()");
+    rbtnElm.setAttribute("onclick", "handleRemove("+ rnD +")");
+    ebtnElm.setAttribute("onclick", "handleEdit(" + rnD + ")");
 
     let cineText = document.createTextNode(cineData);
     let mvText = document.createTextNode(movieData);
@@ -148,7 +149,46 @@ const handleSelectSeat = () => {
 
     let trsData = document.getElementById("trSeats");
     trsData.appendChild(trElem);
+
+    localStorage.setItem("seat" , JSON.stringify(sArr))
     event.preventDefault()
+}
+
+const handleRemove = (i) => {
+
+    let localSdata = JSON.parse(localStorage.getItem("seat"))
+    console.log(localSdata);
+
+    let remvSData = document.getElementById("sData-" + i);
+    console.log(remvSData);
+    remvSData.remove()
+
+    localSdata.map((e , index) => {
+        if (e.sid === i) {
+            localSdata.splice(index, 1);
+        
+        } 
+    });
+    console.log('localSdata',localSdata);
+
+    localStorage.setItem("seat" , JSON.stringify(localSdata))
+
+
+}
+
+const handleEdit = (i) => {
+    let localSdata = JSON.parse(localStorage.getItem("seat"))
+    supdate = true
+    console.log(localSdata);
+
+    let seatData = localSdata.filter((e , index) => e.sid === i);
+
+    uid = seatData[0].sid
+
+    document.getElementById("cinemaN").select = seatData[0].cineData;
+   document.getElementById("movieN").select = seatData[0].movieData;
+   document.getElementById("timeM").select = seatData[0].timeData;
+//    document.getElementById("seatN").value = seatData[0].seatNData;
 }
 
 cinemaNRef.addEventListener("change", handleChangeCinema)
