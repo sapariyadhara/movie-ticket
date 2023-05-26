@@ -1,6 +1,6 @@
 let searchRef = document.getElementById("searchC")
 
-const getCinemaUserSide = () => {
+const getCinemaUserSide = (data) => {
     let getCinemaData = JSON.parse(localStorage.getItem("cinema"));
     console.log("get data111", getCinemaData);
 
@@ -15,22 +15,63 @@ const getCinemaUserSide = () => {
         })
         document.getElementById("trCine").innerHTML = disp
     }
+
+    console.log(data);
+
+
+
+   
+}
+
+const display = (data) => {
+
+    if(data){
+        let disp = ''
+        data.map((v) => {
+            disp += '<tr id='+ "data-" + v.cid + '> ';
+            disp += '<td>' + v.name + '</td>';
+            disp += '<td>' + v.location + '</td>';
+            disp += '<td>' + v.facility + '</td>';
+            disp += '</tr>';
+        })
+        document.getElementById("trCine").innerHTML = disp
+    } else {
+        let disp = ''
+        data.map((v) => {
+            disp += '<tr id='+ "data-" + v.cid + '> ';
+            disp += '<td>' + v.name + '</td>';
+            disp += '<td>' + v.location + '</td>';
+            disp += '<td>' + v.facility + '</td>';
+            disp += '</tr>';
+        })
+        document.getElementById("trCine").innerHTML = disp
+    }
 }
 
 const handleSearchCinema = () => {
 
+    let getCinemaData = JSON.parse(localStorage.getItem("cinema"));
+    console.log("get data111", getCinemaData);
+
     let input = document.getElementById('searchC').value
-    input=input.toLowerCase();
-    let x = document.getElementsByClassName('td');
-      
-    for (let i = 0; i < x.length; i++) { 
-        if (!x[i].innerHTML.toLowerCase().includes(input)) {
-            x[i].style.display="none";
-        }
-        else {
-            x[i].style.display="table-cell";                 
-        }
-    }
+    
+    console.log(input);
+
+    let fData = getCinemaData.filter((v) =>
+             v.name.toLowerCase().includes(input.toLowerCase()) ||
+             v.location.toLowerCase().includes(input.toLowerCase()) ||
+             v.facility.toLowerCase().includes(input.toLowerCase())
+     )
+
+    console.log(fData);
+
+    
+    display(fData);
+   
+    
+    
+
+
 }
 
 

@@ -117,6 +117,8 @@ const handleRemove = (i) => {
 const handleEdit = (i) => {
     let getlMdata = JSON.parse(localStorage.getItem("movie"))
     console.log("get movie data", getlMdata);
+    
+    update = true
 
     let fData = getlMdata.filter((a) => a.mid === i)
     console.log("fdata" ,fData[0] );
@@ -141,15 +143,19 @@ const handleEdit = (i) => {
     
     vid = fData[0].mid
     console.log(vid);
-    fData.map((v, index) => {
-        if (v.mid === i) {
-            document.getElementById("movie").value = fData[0].mName;
-            document.getElementById("decrpt").value = fData[0].decrpt;
-            // document.getElementById("imgP").value = fData[0].poster;
-            document.getElementById("cinemaN").value = fData[0].Cname;
-        }
-    })
+    // fData.map((v, index) => {
+    //     if (v.mid === i) {
+    //         document.getElementById("movie").value = fData[0].mName;
+    //         document.getElementById("decrpt").value = fData[0].decrpt;
+    //         // document.getElementById("imgP").value = fData[0].poster;
+    //         document.getElementById("cinemaN").value = fData[0].Cname;
+    //     }
+    // })
 
+    document.getElementById("movie").value = fData[0].mName;
+    document.getElementById("decrpt").value = fData[0].decrpt;
+    // document.getElementById("imgP").value = fData[0].poster;
+    document.getElementById("cinemaN").value = fData[0].Cname;
 }
 
 const handleUpdatedata = () => {
@@ -159,11 +165,16 @@ const handleUpdatedata = () => {
     let description = document.getElementById("decrpt").value;
     let cinema = document.getElementById("cinemaN").value;
     
+    let perentElem = document.getElementById("mData-" + vid)
+    perentElem.children[0].textContent = name;
+    perentElem.children[1].textContent = description;
+    perentElem.children[2].textContent = cinema;
 
-    let ParentElem = document.getElementById("mData-" + vid);
-    ParentElem.children[0].textContent = name;
-    ParentElem.children[1].textContent = description;
-    ParentElem.children[2].textContent = cinema;
+
+    // let ParentElem = document.getElementById("mData-" + vid);
+    // ParentElem.children[0].textContent = name;
+    // ParentElem.children[1].textContent = description;
+    // ParentElem.children[2].textContent = cinema;
 
     // index = mArr.findIndex((obj => obj.mid === vid));
     // mArr[index].name = name;
@@ -285,11 +296,4 @@ const handleDisc = () => {
 
 movieRef.addEventListener("submit", handleDisc);
 window.onload = handlegetCinema;
-
-
-
-
-
-
-
 
