@@ -21,6 +21,7 @@ const handleMovie = () => {
         let valueM = timeData[i].value
         timeM.push(valueM)
     }
+    
 
     arr.push({
         mid: movieRnd,
