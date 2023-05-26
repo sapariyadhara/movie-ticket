@@ -6,15 +6,313 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+    ">
+
+    <style>
+        body {
+            margin-top: 20px;
+            background: #eee;
+            font-size: 20px;
+        }
+
+        .single_advisor_profile {
+            position: relative;
+            margin-bottom: 50px;
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            z-index: 1;
+            border-radius: 15px;
+            -webkit-box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+            box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+        }
+
+        .single_advisor_profile .advisor_thumb {
+            position: relative;
+            z-index: 1;
+            border-radius: 15px 15px 0 0;
+            margin: 0 auto;
+            padding: 30px 30px 0 30px;
+            background-color: #3f43fd;
+            overflow: hidden;
+        }
+
+        .single_advisor_profile .advisor_thumb::after {
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            position: absolute;
+            width: 150%;
+            height: 80px;
+            bottom: 108px;
+            left: -45%;
+            content: "";
+            background-color: #ffffff;
+            -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+        }
+
+        @media only screen and (max-width: 575px) {
+            .single_advisor_profile .advisor_thumb::after {
+                height: 160px;
+                bottom: -90px;
+            }
+        }
+
+        .single_advisor_profile .advisor_thumb .social-info {
+            position: absolute;
+            z-index: 999;
+            width: 100%;
+            bottom: 0;
+            right: 59px;
+            top: 316px;
+            text-align: right;
+        }
+
+        .single_advisor_profile .advisor_thumb .social-info a {
+            font-size: 14px;
+            color: #020710;
+            padding: 0 5px;
+        }
+
+        .single_advisor_profile .advisor_thumb .social-info a:hover,
+        .single_advisor_profile .advisor_thumb .social-info a:focus {
+            color: #3f43fd;
+
+        }
+
+        .single_advisor_profile .advisor_thumb .social-info a:last-child {
+            padding-right: 0;
+        }
+
+        .single_advisor_profile .single_advisor_details_info {
+            position: relative;
+            z-index: 1;
+            padding: 30px;
+            text-align: right;
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            border-radius: 0 0 -1px 15px;
+            background-color: #ffffff;
+        }
+
+        .single_advisor_profile .single_advisor_details_info::after {
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            position: absolute;
+            z-index: 1;
+            width: 50px;
+            height: 3px;
+            background-color: #3f43fd;
+            content: "";
+            top: 12px;
+            right: 30px;
+        }
+
+        .single_advisor_profile .single_advisor_details_info h6 {
+            margin-bottom: 0.25rem;
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            .single_advisor_profile .single_advisor_details_info h6 {
+                font-size: 14px;
+            }
+        }
+
+        .single_advisor_profile .single_advisor_details_info p {
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            .single_advisor_profile .single_advisor_details_info p {
+                font-size: 12px;
+            }
+        }
+
+        .single_advisor_profile:hover .advisor_thumb::after,
+        .single_advisor_profile:focus .advisor_thumb::after {
+            background-color: #070a57;
+            color: #fff;
+        }
+
+        .single_advisor_profile:hover .advisor_thumb .social-info a,
+        .single_advisor_profile:focus .advisor_thumb .social-info a {
+            color: #ffffff;
+        }
+
+        .single_advisor_profile:hover .advisor_thumb .social-info a:hover,
+        .single_advisor_profile:hover .advisor_thumb .social-info a:focus,
+        .single_advisor_profile:focus .advisor_thumb .social-info a:hover,
+        .single_advisor_profile:focus .advisor_thumb .social-info a:focus {
+            color: #ffffff;
+        }
+
+        .single_advisor_profile:hover .single_advisor_details_info,
+        .single_advisor_profile:focus .single_advisor_details_info {
+            background-color: #070a57;
+            color: #fff;
+        }
+
+        .single_advisor_profile:hover .single_advisor_details_info::after,
+        .single_advisor_profile:focus .single_advisor_details_info::after {
+            background-color: #ffffff;
+        }
+
+        .single_advisor_profile:hover .single_advisor_details_info h6,
+        .single_advisor_profile:focus .single_advisor_details_info h6 {
+            color: #ffffff;
+        }
+
+        .single_advisor_profile:hover .single_advisor_details_info p,
+        .single_advisor_profile:focus .single_advisor_details_info p {
+            color: #ffffff;
+        }
+/* 
+        .container {
+            width: 445px;
+            height: 600px;
+
+        } */
+
+        .single_advisor_profile {
+            width: 336px;
+            height: 475px;
+        }
+
+        .flex {
+            display: flex;
+            gap: 30px;
+        }
+
+        .single_advisor_profile .wow .fadeInUp {
+            visibility: visible;
+            animation-delay: 0.2s;
+            animation-name: fadeInUp;
+        }
+
+        .single_advisor_profile .advisor_thumb .social-info:hover {
+            color: #fff;
+        }
+    </style>
+
+
+
+    <style>
+       
+        .card {
+
+            border: none;
+            background: #eee;
+
+        }
+
+        .search {
+            /* width: 100%; */
+            margin-bottom: auto;
+            margin-top: 20px;
+            height: 50px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .search-input {
+            color: white;
+            border: 0;
+            outline: 0;
+            background: none;
+            width: 0;
+            margin-top: 5px;
+            caret-color: transparent;
+            line-height: 20px;
+            transition: width 0.4s linear
+        }
+
+        .search .search-input {
+            padding: 0 10px;
+            width: 1043px;
+            caret-color: #536bf6;
+            font-size: 19px;
+            font-weight: 300;
+            color: black;
+            transition: width 0.4s linear;
+        }
+
+
+        .search-icon {
+            height: 34px;
+            width: 34px;
+            float: right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-color: #536bf6;
+            font-size: 10px;
+            bottom: 30px;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .search-icon:hover {
+
+            color: #fff !important;
+        }
+
+        a:link {
+            text-decoration: none
+        }
+
+
+
+        .card-inner {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, .125);
+            border-radius: .25rem;
+            border: none;
+            cursor: pointer;
+            transition: all 2s;
+        }
+
+
+        .card-inner:hover {
+
+            transform: scale(1.1);
+
+        }
+
+        .mg-text span {
+
+            font-size: 12px;
+
+        }
+
+        .mg-text {
+
+            line-height: 14px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <label for="site-search">Search Cinema:</label>
-    <input type="search" id="searchC" name="searchC" placeholder="Search for Cinema names..">
+    <!-- <label for="site-search">Search Cinema:</label>
+    <input type="search" id="searchC" name="searchC" placeholder="Search for Cinema names.."> -->
 
 
-
+    <!-- 
     <br><br>
 
     <table border="2">
@@ -29,9 +327,83 @@
         <tbody id="trCine">
 
         </tbody>
-    </table>
+    </table> -->
+
+    <div class="container mt-4">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-9">
+                <div class="card p-4 mt-3">
+                    <h3 class="heading mt-5 text-center">Search Cinema</h3>
+                    <div class="d-flex justify-content-center px-5">
+                        <div class="search"> <input type="text" id="searchC" class="search-input" placeholder="Search..."
+                                name="searchC"> <a href="#" class="search-icon"> <i class="fa fa-search"></i> </a>
+                        </div>
+                    </div>
+                    <div class="row mt-4 g-1 px-4 mb-5">
+                        <div class="col-md-2">
+                            <div class="card-inner p-3 d-flex flex-column align-items-center"> <img
+                                    src="https://i.imgur.com/Mb8kaPV.png" width="50">
+                                <div class="text-center mg-text"> <span class="mg-text">Cinema</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card-inner p-3 d-flex flex-column align-items-center"> <img
+                                    src="https://i.imgur.com/ueLEPGq.png" width="50">
+                                <div class="text-center mg-text"> <span class="mg-text">Location</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card-inner p-3 d-flex flex-column align-items-center"> <img
+                                    src="https://i.imgur.com/tmqv0Eq.png" width="50">
+                                <div class="text-center mg-text"> <span class="mg-text">Movie</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card-inner p-3 d-flex flex-column align-items-center"> <img
+                                    src="https://i.imgur.com/D0Sm15i.png" width="50">
+                                <div class="text-center mg-text"> <span class="mg-text">Description</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card-inner p-3 d-flex flex-column align-items-center"> <img
+                                    src="https://i.imgur.com/Z7BJ8Po.png" width="50">
+                                <div class="text-center mg-text"> <span class="mg-text">seats</span> </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card-inner p-3 d-flex flex-column align-items-center"> <img
+                                    src="https://i.imgur.com/YLsQrn3.png" width="50">
+                                <div class="text-center mg-text"> <span class="mg-text">Payments</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-lg-6">
+               
+            </div>
+        </div>
+        <div id="trCine" class="row flex ">
+
+
+        </div>
+    </div>
 
     <script src="../assets/js/userhome.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js
+    "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js
+    "></script>
 </body>
 
 </html>

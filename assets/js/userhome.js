@@ -4,21 +4,35 @@ const getCinemaUserSide = (data) => {
     let getCinemaData = JSON.parse(localStorage.getItem("cinema"));
     console.log("get data111", getCinemaData);
 
-    if(getCinemaData != null){
-        let disp = ''
-        getCinemaData.map((v) => {
-            disp += '<tr id='+ "data-" + v.cid + '> ';
-            disp += '<td>' + v.name + '</td>';
-            disp += '<td>' + v.location + '</td>';
-            disp += '<td>' + v.facility + '</td>';
-            disp += '</tr>';
-        })
-        document.getElementById("trCine").innerHTML = disp
-    }
+    // if(getCinemaData != null){
+    //     let disp = ''
+    //     getCinemaData.map((v) => {
+    //         disp += '<tr id='+ "data-" + v.cid + '> ';
+    //         disp += '<td>' + v.name + '</td>';
+    //         disp += '<td>' + v.location + '</td>';
+    //         disp += '<td>' + v.facility + '</td>';
+    //         disp += '</tr>';
+    //     })
+    //     document.getElementById("trCine").innerHTML = disp
+    // }
 
     console.log(data);
 
-
+    if(getCinemaData != null){
+        let disp = ''
+        getCinemaData.map((v) => {
+            disp += ' <div id='+ "data-" + v.cid + ' class="col-12 col-sm-6 col-lg-3">'
+            disp += ' <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
+            disp += ' <div  class="advisor_thumb"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">'
+            disp += ' <div class="social-info">' + v.name + '</div>'
+            disp += ' <div class="single_advisor_details_info">' + v.location + '</div>'
+            disp += ' <div class="single_advisor_details_info">' + v.facility + '</div>'
+            disp += '</div>'
+            disp += '</div>'
+            disp += '</div>'
+        })
+        document.getElementById("trCine").innerHTML = disp
+    }
 
    
 }
@@ -28,21 +42,29 @@ const display = (data) => {
     if(data){
         let disp = ''
         data.map((v) => {
-            disp += '<tr id='+ "data-" + v.cid + '> ';
-            disp += '<td>' + v.name + '</td>';
-            disp += '<td>' + v.location + '</td>';
-            disp += '<td>' + v.facility + '</td>';
-            disp += '</tr>';
+            disp += ' <div id='+ "data-" + v.cid + ' class="col-12 col-sm-6 col-lg-3">'
+            disp += ' <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
+            disp += ' <div  class="advisor_thumb"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">'
+            disp += ' <div class="social-info">' + v.name + '</div>'
+            disp += ' <div class="single_advisor_details_info">' + v.location + '</div>'
+            disp += ' <div class="single_advisor_details_info">' + v.facility + '</div>'
+            disp += '</div>'
+            disp += '</div>'
+            disp += '</div>'
         })
         document.getElementById("trCine").innerHTML = disp
     } else {
         let disp = ''
         data.map((v) => {
-            disp += '<tr id='+ "data-" + v.cid + '> ';
-            disp += '<td>' + v.name + '</td>';
-            disp += '<td>' + v.location + '</td>';
-            disp += '<td>' + v.facility + '</td>';
-            disp += '</tr>';
+            disp += ' <div id='+ "data-" + v.cid + ' class="col-12 col-sm-6 col-lg-3">'
+            disp += ' <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
+            disp += ' <div  class="advisor_thumb"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">'
+            disp += ' <div class="social-info">' + v.name + '</div>'
+            disp += ' <div class="single_advisor_details_info">' + v.location + '</div>'
+            disp += ' <div class="single_advisor_details_info">' + v.facility + '</div>'
+            disp += '</div>'
+            disp += '</div>'
+            disp += '</div>'
         })
         document.getElementById("trCine").innerHTML = disp
     }
@@ -79,34 +101,5 @@ searchRef.addEventListener("keyup" , handleSearchCinema)
 window.onload = getCinemaUserSide
 
 
-// var input, filter, ul, li, a, i, txtValue;
-// input = document.getElementById("myInput");
-// filter = input.value.toUpperCase();
-// ul = document.getElementById("myUL");
-// li = ul.getElementsByTagName("li");
-// for (i = 0; i < li.length; i++) {
-//     a = li[i].getElementsByTagName("a")[0];
-//     txtValue = a.textContent || a.innerText;
-//     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//         li[i].style.display = "";
-//     } else {
-//         li[i].style.display = "none";
-//     }
-// }
 
 
-
-// let txtValue , input
-// let search = document.getElementById("searchC")
-// let filter = search.value.toUpperCase();
-// let trS = document.getElementById("trCine");
-// let tdS = trS.getElementsByTagName("td");
-// for (let i = 0; i < tdS.length; i++) {
-//         tdS = trS[i].getElementsByTagName("td")[0];
-//         txtValue = tdS.textContent || tdS.innerText;
-//         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//             tdS.style.display = "";
-//         } else {
-//             tdS.style.display = "none";
-//         }
-//     }

@@ -1,11 +1,7 @@
-const handlecinema = () => {
-    document.getElementById("addCinema").style.display = "block"
-    document.getElementById("addMovie").style.display = "none"
-    
-}
+
 
 let cinemaRef = document.getElementById("cinema-add")
-let arr = [] , cupdate = false;
+let arr = [] ,  cupdate = false;
 let uid = null;
 
 const handleupdateCinema = () => {
@@ -18,6 +14,8 @@ const handleupdateCinema = () => {
     let ucfacility = document.getElementById("facility").value
 
     let perentElem = document.getElementById("data-" + uid)
+
+    console.log(perentElem);
 
     perentElem.children[0].textContent = uccinema;
     perentElem.children[1].textContent = uclocat;
@@ -86,6 +84,9 @@ const handleRemove = (i) => {
 }
 
 const handleCinema = () => {
+    
+    // let arr = JSON.parse(localStorage.getItem(cinema))
+
     let cinemaData = document.getElementById("cinema").value
     let locationData = document.getElementById("location").value
     let facilityData = document.getElementById("facility").value
@@ -97,6 +98,24 @@ const handleCinema = () => {
         location : locationData , 
         facility : facilityData ,
     })
+
+    // if(arr === null){
+    //     localStorage.setItem("cinema" , JSON.stringify([{
+    //         cid : rMd ,
+    //         name : cinemaData ,
+    //         location : locationData , 
+    //         facility : facilityData ,
+    //     }]));
+    // } else {
+    //     arr.push({ 
+    //         cid : rMd ,
+    //         name : cinemaData ,
+    //         location : locationData , 
+    //         facility : facilityData ,
+    //     })
+    //     localStorage.setItem("cinema", JSON.stringify(arr));
+    // }
+
 
     let trElem = document.createElement("tr");
     trElem.setAttribute("id" , "data-"+rMd)
@@ -141,7 +160,6 @@ const handleCinema = () => {
 
 
 
-    console.log(arr);
     localStorage.setItem("cinema" , JSON.stringify(arr));
     event.preventDefault();
 }
@@ -183,8 +201,3 @@ cinemaRef.addEventListener("submit" , handleCineDese)
 window.onload = getlocalCineData
 
 
-const handleMovie = () => {
-    console.log("addMovie");
-    document.getElementById("addMovie").style.display = "block"
-    document.getElementById("addCinema").style.display = "none"
-}

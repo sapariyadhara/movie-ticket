@@ -1,7 +1,7 @@
 let movieRef = document.getElementById("add_movie");
 
 let arr = [];
-let vid = null;
+let uid = null;
 let update = false;
 
 
@@ -117,8 +117,10 @@ const handleRemove = (i) => {
 const handleEdit = (i) => {
     let getlMdata = JSON.parse(localStorage.getItem("movie"))
     console.log("get movie data", getlMdata);
-    
-    update = true
+  
+    update = true ; 
+
+    console.log(update);
 
     let fData = getlMdata.filter((a) => a.mid === i)
     console.log("fdata" ,fData[0] );
@@ -141,8 +143,8 @@ const handleEdit = (i) => {
         mtime[i].value = fData[0].time[i]
     }
     
-    vid = fData[0].mid
-    console.log(vid);
+    uid = fData[0].mid
+    console.log(uid);
     // fData.map((v, index) => {
     //     if (v.mid === i) {
     //         document.getElementById("movie").value = fData[0].mName;
@@ -164,27 +166,28 @@ const handleUpdatedata = () => {
     let name = document.getElementById("movie").value;
     let description = document.getElementById("decrpt").value;
     let cinema = document.getElementById("cinemaN").value;
-    
-    let perentElem = document.getElementById("mData-" + vid)
+    console.log(uid);
+    let perentElem = document.getElementById("mData-"+uid)
+    console.log(perentElem);
     perentElem.children[0].textContent = name;
     perentElem.children[1].textContent = description;
     perentElem.children[2].textContent = cinema;
 
 
-    // let ParentElem = document.getElementById("mData-" + vid);
+    // let ParentElem = document.getElementById("mData-" + uid);
     // ParentElem.children[0].textContent = name;
     // ParentElem.children[1].textContent = description;
     // ParentElem.children[2].textContent = cinema;
 
-    // index = mArr.findIndex((obj => obj.mid === vid));
+    // index = mArr.findIndex((obj => obj.mid === uid));
     // mArr[index].name = name;
     // mArr[index].description = description;
     // mArr[index].cinema = cinema;
 
     let movupData = mArr.map((a) => {
-        if (a.mid === vid) {
+        if (a.mid === uid) {
             return {
-                mid: vid,
+                mid: uid,
                 mName : name ,
                 decrpt : description , 
                 Cname : cinema ,
@@ -196,7 +199,7 @@ const handleUpdatedata = () => {
 
 
     update = false;
-    vid = null;
+    uid = null;
     localStorage.setItem("movie", JSON.stringify(movupData));
     event.preventDefault();
 
