@@ -13,8 +13,9 @@ const handleMovie = () => {
     let timeData = document.getElementsByName("time");
     let pesterData = document.getElementById("imgP").value;
 
-    console.log('pesterData',pesterData );
-    console.log('pesterData', pesterData.split("\\").pop() );
+    let posterPath =  pesterData.split("\\").pop()
+    console.log('pesterData',posterPath );
+    // console.log('pesterData', pesterData.split("\\").pop() );
     let movieRnd = Math.floor(Math.random() * 100);
 
     let timeM = [];
@@ -32,7 +33,7 @@ const handleMovie = () => {
             decrpt: decrptData,
             Cname: cinemaData,
             time: timeM,
-            poster: pesterData,
+            poster: posterPath,
         }]));
     } else {
         
@@ -42,7 +43,7 @@ const handleMovie = () => {
             decrpt: decrptData,
             Cname: cinemaData,
             time: timeM,
-            poster: pesterData,
+            poster: posterPath,
         })
         localStorage.setItem("movie", JSON.stringify(arr));
     }
@@ -71,7 +72,7 @@ const handleMovie = () => {
     let deText = document.createTextNode(decrptData);
     let cineText = document.createTextNode(cinemaData);
     let timeText = document.createTextNode(timeM);
-    let psText = document.createTextNode(pesterData);
+    let psText = document.createTextNode(posterPath);
 
     let rbtext = document.createTextNode("X");
     let ebtext = document.createTextNode("Edit");
@@ -169,7 +170,7 @@ const handleEdit = (i) => {
 
     document.getElementById("movie").value = fData[0].mName;
     document.getElementById("decrpt").value = fData[0].decrpt;
-    // document.getElementById("imgP").value = fData[0].poster;
+    document.getElementById("imgP") = fData[0].poster;
     document.getElementById("cinemaN").value = fData[0].Cname;
 }
 
@@ -179,12 +180,18 @@ const handleUpdatedata = () => {
     let name = document.getElementById("movie").value;
     let description = document.getElementById("decrpt").value;
     let cinema = document.getElementById("cinemaN").value;
+    let poster = document.getElementById("imgP").value
+
+    let posterPath =  poster.split("\\").pop()
+
+    console.log('poster',poster);
     console.log(uid);
-    let perentElem = document.getElementById("mData-"+uid)
+    let perentElem = document.getElementById("mData-" +uid)
     console.log(perentElem);
     perentElem.children[0].textContent = name;
     perentElem.children[1].textContent = description;
     perentElem.children[2].textContent = cinema;
+    perentElem.children[4].textContent = posterPath;
 
 
     // let ParentElem = document.getElementById("mData-" + uid);
@@ -204,6 +211,7 @@ const handleUpdatedata = () => {
                 mName : name ,
                 decrpt : description , 
                 Cname : cinema ,
+                poster : posterPath ,
             }
         } else {
             return a;
