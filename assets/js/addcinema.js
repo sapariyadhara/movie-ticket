@@ -20,7 +20,7 @@ const handleupdateCinema = () => {
     perentElem.children[0].textContent = uccinema;
     perentElem.children[1].textContent = uclocat;
     perentElem.children[2].textContent = ucfacility;
-    perentElem.children[3].textContent = cimages.files[0].name;
+    perentElem.children[3].innerHTML ='<img src=' + '../assets/images/' + cimages.files[0].name + '> ' ;
 
 
     console.log(uid);
@@ -163,7 +163,7 @@ const handleCinema = () => {
     tdElem1.appendChild(tdtextElem1);
     tdElem2.appendChild(tdtextElem2);
     tdElem3.appendChild(tdtextElem3);
-    // tdElem3.appendChild(tdtextElem31);
+    tdElem3.appendChild(tdtextElem31);
     rbElem.appendChild(rbtextElem);
     ebElem.appendChild(ebtextElem);
 
@@ -194,7 +194,7 @@ const getlocalCineData = () => {
         disp += '<td>' + v.name + '</td>';
         disp += '<td>' + v.location + '</td>';
         disp += '<td>' + v.facility + '</td>';
-        disp += '<td>' + '<img src=' + '../assets/images/' + m.imageC + '> '+ '</td>';
+        disp += '<td>' + '<img src=' + '../assets/images/' + v.imageC + '> '+ '</td>';
         disp += '<td>' + '<button onclick="handleRemove(' + v.cid + ')"> X </button>' + '</td>';
         disp += '<td>' + '<button onclick="handleEdit(' + v.cid + ')"> Edit </button>' + '</td>';
         disp += '</tr>';
