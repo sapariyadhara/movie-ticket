@@ -18,6 +18,11 @@ const handleMovie = () => {
     // console.log('pesterData', pesterData.split("\\").pop() );
     let movieRnd = Math.floor(Math.random() * 100);
 
+    console.log("cinemaData000" , cinemaData);
+    let cinemaData1 = JSON.parse(localStorage.getItem("cinema"));
+   let CinemaName =  cinemaData1.filter((v) => v.cid == cinemaData)
+
+
     let timeM = [];
 
     for (let i = 0; i < timeData.length; i++) {
@@ -31,7 +36,7 @@ const handleMovie = () => {
             mid: movieRnd,
             mName: mvData,
             decrpt: decrptData,
-            Cname: cinemaData,
+            Cname: CinemaName[0].name,
             time: timeM,
             poster: imgP.files[0].name,
         }]));
@@ -41,7 +46,7 @@ const handleMovie = () => {
             mid: movieRnd,
             mName: mvData,
             decrpt: decrptData,
-            Cname: cinemaData,
+            Cname: CinemaName[0].name,
             time: timeM,
             poster: imgP.files[0].name,
         })
@@ -63,7 +68,7 @@ const handleMovie = () => {
     let rBtntd = document.createElement("td");
     let eBtntd = document.createElement("td");
     let rbtnElm = document.createElement("button");
-    let ebtnElm = document.createElement("button");
+    let ebtnElm = document.createElement("button");  
 
     let imgElem = document.createElement("img")
     imgElem.setAttribute("id" , "posterimag")
@@ -73,14 +78,15 @@ const handleMovie = () => {
     // imgElem.setAttribute("alt" , "myposter")
     pstd.appendChild(imgElem)
 
-    
-
+   
+    console.log(cinemaData1 , CinemaName);
+   
     rbtnElm.setAttribute("onclick", "handleRemove(" + movieRnd + ")");
     ebtnElm.setAttribute("onclick", "handleEdit(" + movieRnd + ")");
 
     let mvText = document.createTextNode(mvData);
     let deText = document.createTextNode(decrptData);
-    let cineText = document.createTextNode(cinemaData);
+    let cineText = document.createTextNode(CinemaName[0].name);
     let timeText = document.createTextNode(timeM);
     // let psText = document.createTextNode(imgP.files[0].name);
 
@@ -202,13 +208,16 @@ const handleUpdatedata = () => {
    
     pstd.appendChild(imgElem)
  
+    let cinemaData1 = JSON.parse(localStorage.getItem("cinema"));
+    let CinemaName =  cinemaData1.filter((v) => v.cid == cinema)
+ 
 
     console.log(uid);
     let perentElem = document.getElementById("mData-" +uid)
     console.log(perentElem);
     perentElem.children[0].textContent = name;
     perentElem.children[1].textContent = description;
-    perentElem.children[2].textContent = cinema;
+    perentElem.children[2].textContent = CinemaName[0].name;
     perentElem.children[3].textContent = timeM ;
     perentElem.children[4].innerHTML = '<img src=' + '../assets/images/' + imgP.files[0].name + '> '  ;
 
@@ -252,6 +261,15 @@ const handlegetCinema = () => {
 
     let getlocalMvdata = JSON.parse(localStorage.getItem("movie"))
     console.log("window get data", getlocalMvdata);
+
+    // let getlocalCidata = JSON.parse(localStorage.getItem("cinema"))
+    // console.log("Cinema get data", getlocalCidata);
+
+    // let windowcine = document.getElementById("cinemaN").value
+
+    // console.log(windowcine);
+
+    // let CinemaName =  windowcine.filter((v) => v.cid == windowcine)
 
 
     if (getlocalMvdata != null) {
