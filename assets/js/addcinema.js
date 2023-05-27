@@ -132,10 +132,16 @@ const handleCinema = () => {
     let rbElem = document.createElement("button");
     let ebElem = document.createElement("button");  
 
+    let imgElem = document.createElement("img")
+    imgElem.setAttribute("id" , "cinemaimag")
+    imgElem.setAttribute("src" , '../assets/images/'+ cimages.files[0].name)
+
+    tdElem31.appendChild(imgElem)
+
     let tdtextElem1 = document.createTextNode(cinemaData);
     let tdtextElem2 = document.createTextNode(locationData);
     let tdtextElem3 = document.createTextNode(facilityData);
-    let tdtextElem31 = document.createTextNode(cimages.files[0].name);
+    // let tdtextElem31 = document.createTextNode(cimages.files[0].name);
   
     let rbtextElem = document.createTextNode("X");
     let ebtextElem = document.createTextNode("Edit");
@@ -146,7 +152,7 @@ const handleCinema = () => {
     trElem.appendChild(tdElem1);
     trElem.appendChild(tdElem2);
     trElem.appendChild(tdElem3);
-    trElem.appendChild(tdElem31);
+    // trElem.appendChild(tdElem31);
     trElem.appendChild(tdElem4);
     trElem.appendChild(tdElem5);
 
@@ -157,7 +163,7 @@ const handleCinema = () => {
     tdElem1.appendChild(tdtextElem1);
     tdElem2.appendChild(tdtextElem2);
     tdElem3.appendChild(tdtextElem3);
-    tdElem3.appendChild(tdtextElem31);
+    // tdElem3.appendChild(tdtextElem31);
     rbElem.appendChild(rbtextElem);
     ebElem.appendChild(ebtextElem);
 
@@ -188,7 +194,7 @@ const getlocalCineData = () => {
         disp += '<td>' + v.name + '</td>';
         disp += '<td>' + v.location + '</td>';
         disp += '<td>' + v.facility + '</td>';
-        disp += '<td>' + v.imageC + '</td>';
+        disp += '<td>' + '<img src=' + '../assets/images/' + m.imageC + '> '+ '</td>';
         disp += '<td>' + '<button onclick="handleRemove(' + v.cid + ')"> X </button>' + '</td>';
         disp += '<td>' + '<button onclick="handleEdit(' + v.cid + ')"> Edit </button>' + '</td>';
         disp += '</tr>';

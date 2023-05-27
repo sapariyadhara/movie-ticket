@@ -65,6 +65,16 @@ const handleMovie = () => {
     let rbtnElm = document.createElement("button");
     let ebtnElm = document.createElement("button");
 
+    let imgElem = document.createElement("img")
+    imgElem.setAttribute("id" , "posterimag")
+    imgElem.setAttribute("src" , '../assets/images/'+ imgP.files[0].name)
+    // imgElem.setAttribute("accept" , "image/*")
+
+    // imgElem.setAttribute("alt" , "myposter")
+    pstd.appendChild(imgElem)
+
+    
+
     rbtnElm.setAttribute("onclick", "handleRemove(" + movieRnd + ")");
     ebtnElm.setAttribute("onclick", "handleEdit(" + movieRnd + ")");
 
@@ -72,7 +82,7 @@ const handleMovie = () => {
     let deText = document.createTextNode(decrptData);
     let cineText = document.createTextNode(cinemaData);
     let timeText = document.createTextNode(timeM);
-    let psText = document.createTextNode(imgP.files[0].name);
+    // let psText = document.createTextNode(imgP.files[0].name);
 
     let rbtext = document.createTextNode("X");
     let ebtext = document.createTextNode("Edit");
@@ -92,7 +102,7 @@ const handleMovie = () => {
     dectd.appendChild(deText);
     cinetd.appendChild(cineText);
     timetd.appendChild(timeText);
-    pstd.appendChild(psText);
+    // pstd.appendChild(psText);
 
     rbtnElm.appendChild(rbtext);
     ebtnElm.appendChild(ebtext);
@@ -158,12 +168,16 @@ const handleEdit = (i) => {
         mtime[i].value = fData[0].time[i]
     }
     
+   
+
+
+
     uid = fData[0].mid
     console.log(uid);
 
     document.getElementById("movie").value = fData[0].mName;
     document.getElementById("decrpt").value = fData[0].decrpt;
-    // document.getElementById("imgP") = fData[0].poster;
+    // document.getElementById("imgP") = '../assets/images/'+ imgP.files[0].name;
     document.getElementsByName("time").value = fData[0].time;
     document.getElementById("cinemaN").value = fData[0].Cname;
 }
@@ -183,6 +197,12 @@ const handleUpdatedata = () => {
         timeM.push(valueM)
     }
 
+    let pstd = document.createElement("td");
+    let imgElem = document.createElement("img")
+   
+    pstd.appendChild(imgElem)
+ 
+
     console.log(uid);
     let perentElem = document.getElementById("mData-" +uid)
     console.log(perentElem);
@@ -190,7 +210,7 @@ const handleUpdatedata = () => {
     perentElem.children[1].textContent = description;
     perentElem.children[2].textContent = cinema;
     perentElem.children[3].textContent = timeM ;
-    perentElem.children[4].textContent = imgP.files[0].name;
+    perentElem.children[4].innerHTML = '<img src=' + '../assets/images/' + imgP.files[0].name + '> '  ;
 
 
 
@@ -242,7 +262,7 @@ const handlegetCinema = () => {
             mdisp += '<td>' + m.decrpt + '</td>'
             mdisp += '<td>' + m.Cname + '</td>'
             mdisp += '<td>' + m.time + '</td>'
-            mdisp += '<td>' + m.poster + '</td>'
+            mdisp += '<td>' + '<img src=' + '../assets/images/' + m.poster + '> ' + '</td>'
             mdisp += '<td>' + '<button onclick="handleRemove(' + m.mid + ')"> X </button>' + '</td>'
             mdisp += '<td>' + '<button onclick="handleEdit(' + m.mid + ')"> Edit </button>' + '</td>'
             mdisp += '</tr>'
