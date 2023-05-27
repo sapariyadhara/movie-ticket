@@ -11,10 +11,10 @@ const handleMovie = () => {
     let decrptData = document.getElementById("decrpt").value;
     let cinemaData = document.getElementById("cinemaN").value;
     let timeData = document.getElementsByName("time");
-    let pesterData = document.getElementById("imgP").value;
+    // let pesterData = document.getElementById("imgP").value;
 
-    let posterPath =  pesterData.split("\\").pop()
-    console.log('pesterData',posterPath );
+    // let posterPath =  pesterData.split("\\").pop()
+    // console.log('pesterData',posterPath );
     // console.log('pesterData', pesterData.split("\\").pop() );
     let movieRnd = Math.floor(Math.random() * 100);
 
@@ -33,7 +33,7 @@ const handleMovie = () => {
             decrpt: decrptData,
             Cname: cinemaData,
             time: timeM,
-            poster: posterPath,
+            poster: imgP.files[0].name,
         }]));
     } else {
         
@@ -43,7 +43,7 @@ const handleMovie = () => {
             decrpt: decrptData,
             Cname: cinemaData,
             time: timeM,
-            poster: posterPath,
+            poster: imgP.files[0].name,
         })
         localStorage.setItem("movie", JSON.stringify(arr));
     }
@@ -72,7 +72,7 @@ const handleMovie = () => {
     let deText = document.createTextNode(decrptData);
     let cineText = document.createTextNode(cinemaData);
     let timeText = document.createTextNode(timeM);
-    let psText = document.createTextNode(posterPath);
+    let psText = document.createTextNode(imgP.files[0].name);
 
     let rbtext = document.createTextNode("X");
     let ebtext = document.createTextNode("Edit");
@@ -160,18 +160,11 @@ const handleEdit = (i) => {
     
     uid = fData[0].mid
     console.log(uid);
-    // fData.map((v, index) => {
-    //     if (v.mid === i) {
-    //         document.getElementById("movie").value = fData[0].mName;
-    //         document.getElementById("decrpt").value = fData[0].decrpt;
-    //         // document.getElementById("imgP").value = fData[0].poster;
-    //         document.getElementById("cinemaN").value = fData[0].Cname;
-    //     }
-    // })
 
     document.getElementById("movie").value = fData[0].mName;
     document.getElementById("decrpt").value = fData[0].decrpt;
     // document.getElementById("imgP") = fData[0].poster;
+    document.getElementsByName("time").value = fData[0].time;
     document.getElementById("cinemaN").value = fData[0].Cname;
 }
 
@@ -181,29 +174,25 @@ const handleUpdatedata = () => {
     let name = document.getElementById("movie").value;
     let description = document.getElementById("decrpt").value;
     let cinema = document.getElementById("cinemaN").value;
-    let poster = document.getElementById("imgP").value
+    let timeU = document.getElementsByName("time");
+   
+    let timeM = [];
 
-    let posterPath =  poster.split("\\").pop()
+    for (let i = 0; i < timeU.length; i++) {
+        let valueM = timeU[i].value
+        timeM.push(valueM)
+    }
 
-    console.log('poster',poster);
     console.log(uid);
     let perentElem = document.getElementById("mData-" +uid)
     console.log(perentElem);
     perentElem.children[0].textContent = name;
     perentElem.children[1].textContent = description;
     perentElem.children[2].textContent = cinema;
-    perentElem.children[4].textContent = posterPath;
+    perentElem.children[3].textContent = timeM ;
+    perentElem.children[4].textContent = imgP.files[0].name;
 
 
-    // let ParentElem = document.getElementById("mData-" + uid);
-    // ParentElem.children[0].textContent = name;
-    // ParentElem.children[1].textContent = description;
-    // ParentElem.children[2].textContent = cinema;
-
-    // index = mArr.findIndex((obj => obj.mid === uid));
-    // mArr[index].name = name;
-    // mArr[index].description = description;
-    // mArr[index].cinema = cinema;
 
     let movupData = mArr.map((a) => {
         if (a.mid === uid) {
@@ -212,7 +201,8 @@ const handleUpdatedata = () => {
                 mName : name ,
                 decrpt : description , 
                 Cname : cinema ,
-                poster : posterPath ,
+                time: timeM,
+                poster : imgP.files[0].name ,
             }
         } else {
             return a;

@@ -114,6 +114,7 @@ const handleCinema = () => {
             location : locationData , 
             facility : facilityData ,
             imageC : cimages.files[0].name ,
+                    //id . files [0].name
         })
         localStorage.setItem("cinema", JSON.stringify(arr));
     }
