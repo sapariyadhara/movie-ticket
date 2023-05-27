@@ -3,7 +3,7 @@ let movieRef = document.getElementById("movieN");
 let enterSeatRef = document.getElementById("enterSeat");
 
 let uid = null;
-let sArr = []
+
 
 let supdate = false;
 
@@ -98,7 +98,7 @@ const handleChangeMovie = () => {
 };
 
 const handleSelectSeat = () => {
-   
+   let sArr = JSON.parse(localStorage.getItem("seat"))
 
     let cineData = document.getElementById("cinemaN").value;
     let movieData = document.getElementById("movieN").value;
@@ -112,36 +112,36 @@ const handleSelectSeat = () => {
 
     let rnD = Math.floor(Math.random() * 1000);
 
-    sArr.push({
-        sid : rnD ,
-        cid : cineData ,
-        mid : movieData ,
-        time : timeData ,
-        seat : seatsIndex
-    })
-    console.log(sArr);
+    // sArr.push({
+    //     sid : rnD ,
+    //     cid : cineData ,
+    //     mid : movieData ,
+    //     time : timeData ,
+    //     seat : seatsIndex
+    // })
+    // console.log(sArr);
 
-    // if (sArr === null) {
-    //     console.log("1");
-    //     localStorage.setItem("seat", JSON.stringify([{
-    //         sid: rnD,
-    //         cid: cineData,
-    //         mid: movieData,
-    //         time: timeData,
-    //         seat: seatsIndex
-    //     }]));
-    // } else {
-    //     console.log("2");
-    //     sArr.push({
-    //         sid: rnD,
-    //         cid: cineData,
-    //         mid: movieData,
-    //         time: timeData,
-    //         seat: seatsIndex
-    //     });
+    if (sArr === null) {
+        console.log("1");
+        localStorage.setItem("seat", JSON.stringify([{
+            sid: rnD,
+            cid: cineData,
+            mid: movieData,
+            time: timeData,
+            seat: seatsIndex
+        }]));
+    } else {
+        console.log("2");
+        sArr.push({
+            sid: rnD,
+            cid: cineData,
+            mid: movieData,
+            time: timeData,
+            seat: seatsIndex
+        });
 
-    //     localStorage.setItem("seat", JSON.stringify(sArr));
-    // }
+        localStorage.setItem("seat", JSON.stringify(sArr));
+    }
 
     let trElem = document.createElement("tr");
     trElem.setAttribute("id", "sData-" + rnD);
@@ -189,7 +189,7 @@ const handleSelectSeat = () => {
     let trsData = document.getElementById("trSeats");
     trsData.appendChild(trElem);
 
-    localStorage.setItem("seat", JSON.stringify(sArr));
+    // localStorage.setItem("seat", JSON.stringify(sArr));
     event.preventDefault();
 };
 

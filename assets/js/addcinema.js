@@ -1,7 +1,7 @@
 
 
 let cinemaRef = document.getElementById("cinema-add")
-let arr = [] ,  cupdate = false;
+let  cupdate = false;
 let uid = null;
 
 const handleupdateCinema = () => {
@@ -21,7 +21,7 @@ const handleupdateCinema = () => {
     perentElem.children[1].textContent = uclocat;
     perentElem.children[2].textContent = ucfacility;
 
-    console.log(arr , uid);
+    console.log(uid);
 
     let cineupData = localData.map((a) => {
         if (a.cid === uid) {
@@ -85,36 +85,35 @@ const handleRemove = (i) => {
 
 const handleCinema = () => {
     
-    // let arr = JSON.parse(localStorage.getItem(cinema))
+    let arr = JSON.parse(localStorage.getItem("cinema"))
+
+console.log('arr' ,arr);
 
     let cinemaData = document.getElementById("cinema").value
     let locationData = document.getElementById("location").value
     let facilityData = document.getElementById("facility").value
 
     let rMd = Math.floor(Math.random() * 1000);
-    arr.push({
-        cid : rMd ,
-        name : cinemaData ,
-        location : locationData , 
-        facility : facilityData ,
-    })
+  
 
-    // if(arr === null){
-    //     localStorage.setItem("cinema" , JSON.stringify([{
-    //         cid : rMd ,
-    //         name : cinemaData ,
-    //         location : locationData , 
-    //         facility : facilityData ,
-    //     }]));
-    // } else {
-    //     arr.push({ 
-    //         cid : rMd ,
-    //         name : cinemaData ,
-    //         location : locationData , 
-    //         facility : facilityData ,
-    //     })
-    //     localStorage.setItem("cinema", JSON.stringify(arr));
-    // }
+    if(arr === null){
+       
+        localStorage.setItem("cinema" , JSON.stringify([{
+            cid : rMd ,
+            name : cinemaData ,
+            location : locationData , 
+            facility : facilityData ,
+        }]));
+    } else {
+        
+        arr.push({ 
+            cid : rMd ,
+            name : cinemaData ,
+            location : locationData , 
+            facility : facilityData ,
+        })
+        localStorage.setItem("cinema", JSON.stringify(arr));
+    }
 
 
     let trElem = document.createElement("tr");
@@ -160,7 +159,7 @@ const handleCinema = () => {
 
 
 
-    localStorage.setItem("cinema" , JSON.stringify(arr));
+    // localStorage.setItem("cinema" , JS ON.stringify(arr));
     event.preventDefault();
 }
 

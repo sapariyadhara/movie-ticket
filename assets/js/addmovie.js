@@ -1,18 +1,20 @@
 let movieRef = document.getElementById("add_movie");
-
-let arr = [];
 let uid = null;
 let update = false;
 
 
 
 const handleMovie = () => {
+    let arr = JSON.parse(localStorage.getItem("movie"))
+
     let mvData = document.getElementById("movie").value;
     let decrptData = document.getElementById("decrpt").value;
     let cinemaData = document.getElementById("cinemaN").value;
     let timeData = document.getElementsByName("time");
     let pesterData = document.getElementById("imgP").value;
 
+    console.log('pesterData',pesterData );
+    console.log('pesterData', pesterData.split("\\").pop() );
     let movieRnd = Math.floor(Math.random() * 100);
 
     let timeM = [];
@@ -21,16 +23,29 @@ const handleMovie = () => {
         let valueM = timeData[i].value
         timeM.push(valueM)
     }
-    
 
-    arr.push({
-        mid: movieRnd,
-        mName: mvData,
-        decrpt: decrptData,
-        Cname: cinemaData,
-        time: timeM,
-        poster: pesterData,
-    });
+    if(arr === null){
+       
+        localStorage.setItem("movie" , JSON.stringify([{
+            mid: movieRnd,
+            mName: mvData,
+            decrpt: decrptData,
+            Cname: cinemaData,
+            time: timeM,
+            poster: pesterData,
+        }]));
+    } else {
+        
+        arr.push({ 
+            mid: movieRnd,
+            mName: mvData,
+            decrpt: decrptData,
+            Cname: cinemaData,
+            time: timeM,
+            poster: pesterData,
+        })
+        localStorage.setItem("movie", JSON.stringify(arr));
+    }
 
     console.log("time", timeData);
     console.log(arr);
@@ -83,8 +98,6 @@ const handleMovie = () => {
 
     let trmData = document.getElementById("trMovie");
     trmData.appendChild(trElem);
-
-    localStorage.setItem("movie", JSON.stringify(arr));
 
     event.preventDefault();
 };
@@ -300,3 +313,4 @@ const handleDisc = () => {
 movieRef.addEventListener("submit", handleDisc);
 window.onload = handlegetCinema;
 
+// https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
