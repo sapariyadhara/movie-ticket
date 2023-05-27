@@ -110,9 +110,10 @@ const handleRemove = (i) => {
     console.log(arrR);
 
     let removData = document.getElementById("mData-" + i)
+    console.log(removData , i, 'mData-'+i);
     removData.remove();
 
-    console.log(removData , i);
+   
 
     arrR.map((v, index) => {
         if (v.mid === i) {
@@ -170,7 +171,7 @@ const handleEdit = (i) => {
 
     document.getElementById("movie").value = fData[0].mName;
     document.getElementById("decrpt").value = fData[0].decrpt;
-    document.getElementById("imgP") = fData[0].poster;
+    // document.getElementById("imgP") = fData[0].poster;
     document.getElementById("cinemaN").value = fData[0].Cname;
 }
 
@@ -246,7 +247,7 @@ const handlegetCinema = () => {
     if (getlocalMvdata != null) {
         let mdisp = ''
         getlocalMvdata.map((m) => {
-            mdisp += '<tr id= "mData-' + m.mid + ' ">'
+            mdisp += '<tr id= "mData-' + m.mid + '">'
             mdisp += '<td>' + m.mName + '</td>'
             mdisp += '<td>' + m.decrpt + '</td>'
             mdisp += '<td>' + m.Cname + '</td>'
