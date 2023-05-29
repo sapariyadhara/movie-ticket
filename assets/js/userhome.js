@@ -1,8 +1,11 @@
 let searchRef = document.getElementById("searchC")
 
-const getCinemaUserSide = (data) => {
+const getCMUserSide = (data) => {
     let getCinemaData = JSON.parse(localStorage.getItem("cinema"));
-    console.log("get data111", getCinemaData);
+    console.log("get cinema", getCinemaData);
+
+    let getMovieData = JSON.parse(localStorage.getItem("movie"));
+    console.log("get movie", getMovieData);
 
 
 
@@ -22,6 +25,24 @@ const getCinemaUserSide = (data) => {
             disp += '</div>'
         })
         document.getElementById("trCine").innerHTML = disp
+    }
+
+    console.log(data);
+
+    if(getMovieData != null){
+        let disp = ''
+        getMovieData.map((v) => {
+            disp += ' <div id='+ "data-" + v.mid + ' class="col-12 col-sm-6 col-lg-3">'
+            disp += ' <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
+            disp += ' <div class="advisor_thumb"><img src=' + '../assets/images/' + v.poster + '>'
+            disp += ' <div class="social-info">' + v.mName + '</div>'
+            disp += ' <div class="single_advisor_details_info">' + v.Cname + '</div>'
+            disp += ' <div class="single_advisor_details_info">' + v.decrpt + '</div>'
+            disp += '</div>'
+            disp += '</div>'
+            disp += '</div>'
+        })
+        document.getElementById("trMovie").innerHTML = disp
     }
 
    
@@ -88,7 +109,7 @@ const handleSearchCinema = () => {
 
 
 searchRef.addEventListener("keyup" , handleSearchCinema)
-window.onload = getCinemaUserSide
+window.onload = getCMUserSide
 
 
 
