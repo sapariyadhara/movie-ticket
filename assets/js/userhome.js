@@ -4,17 +4,7 @@ const getCinemaUserSide = (data) => {
     let getCinemaData = JSON.parse(localStorage.getItem("cinema"));
     console.log("get data111", getCinemaData);
 
-    // if(getCinemaData != null){
-    //     let disp = ''
-    //     getCinemaData.map((v) => {
-    //         disp += '<tr id='+ "data-" + v.cid + '> ';
-    //         disp += '<td>' + v.name + '</td>';
-    //         disp += '<td>' + v.location + '</td>';
-    //         disp += '<td>' + v.facility + '</td>';
-    //         disp += '</tr>';
-    //     })
-    //     document.getElementById("trCine").innerHTML = disp
-    // }
+
 
     console.log(data);
 
@@ -23,7 +13,7 @@ const getCinemaUserSide = (data) => {
         getCinemaData.map((v) => {
             disp += ' <div id='+ "data-" + v.cid + ' class="col-12 col-sm-6 col-lg-3">'
             disp += ' <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
-            disp += ' <div  class="advisor_thumb"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">'
+            disp += ' <div class="advisor_thumb"><img src=' + '../assets/images/' + v.imageC + '>'
             disp += ' <div class="social-info">' + v.name + '</div>'
             disp += ' <div class="single_advisor_details_info">' + v.location + '</div>'
             disp += ' <div class="single_advisor_details_info">' + v.facility + '</div>'
