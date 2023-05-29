@@ -15,7 +15,7 @@ const handleChangeCinema = () => {
     let mid = document.getElementById("cinemaN").value;
     console.log('mid' , mid);
 
-    let sMovie = getMovieData.filter((v) => v.Cname == mid);
+    let sMovie = getMovieData.filter((v) => v.cid == mid);
     console.log(sMovie);
 
     if (sMovie != null) {

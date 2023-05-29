@@ -30,6 +30,7 @@ const handleMovie = () => {
        
         localStorage.setItem("movie" , JSON.stringify([{
             mid: movieRnd,
+            cid : cinemaData,
             mName: mvData,
             decrpt: decrptData,
             Cname: CinemaName[0].name,
@@ -40,6 +41,7 @@ const handleMovie = () => {
         
         arr.push({ 
             mid: movieRnd,
+            cid : cinemaData,
             mName: mvData,
             decrpt: decrptData,
             Cname: CinemaName[0].name,
@@ -221,6 +223,7 @@ const handleUpdatedata = () => {
         if (a.mid === uid) {
             return {
                 mid: uid,
+                cid : cinema,
                 mName : name ,
                 decrpt : description , 
                 Cname : CinemaName[0].name ,
