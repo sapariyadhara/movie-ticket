@@ -13,6 +13,7 @@ const handleChangeCinema = () => {
     let getMovieData = JSON.parse(localStorage.getItem("movie"));
     console.log("get movie", getMovieData);
     let mid = document.getElementById("cinemaN").value;
+    console.log('mid' , mid);
 
     let sMovie = getMovieData.filter((v) => v.Cname == mid);
     console.log(sMovie);
@@ -105,21 +106,13 @@ const handleSelectSeat = () => {
     let timeData = document.getElementById("timeM").value;
     let seatNData = parseInt(document.getElementById("seatN").value);
 
-    // let seatsIndex = [...seatNData].map(seatNData => [...seatNData].indexOf(seatNData));
+   let cinemaName = JSON.parse(localStorage.getItem("cinema"))
+   console.log(cinemaName , 'cinemaName');
 
     let seatsIndex = new Array(seatNData + 1).join("0").split("").map(parseFloat);
     console.log(cineData, movieData, timeData, seatNData, seatsIndex);
 
     let rnD = Math.floor(Math.random() * 1000);
-
-    // sArr.push({
-    //     sid : rnD ,
-    //     cid : cineData ,
-    //     mid : movieData ,
-    //     time : timeData ,
-    //     seat : seatsIndex
-    // })
-    // console.log(sArr);
 
     if (sArr === null) {
         console.log("1");

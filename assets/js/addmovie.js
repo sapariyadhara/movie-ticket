@@ -11,11 +11,7 @@ const handleMovie = () => {
     let decrptData = document.getElementById("decrpt").value;
     let cinemaData = document.getElementById("cinemaN").value;
     let timeData = document.getElementsByName("time");
-    // let pesterData = document.getElementById("imgP").value;
-
-    // let posterPath =  pesterData.split("\\").pop()
-    // console.log('pesterData',posterPath );
-    // console.log('pesterData', pesterData.split("\\").pop() );
+   
     let movieRnd = Math.floor(Math.random() * 100);
 
     console.log("cinemaData000" , cinemaData);
@@ -73,9 +69,7 @@ const handleMovie = () => {
     let imgElem = document.createElement("img")
     imgElem.setAttribute("id" , "posterimag")
     imgElem.setAttribute("src" , '../assets/images/'+ imgP.files[0].name)
-    // imgElem.setAttribute("accept" , "image/*")
-
-    // imgElem.setAttribute("alt" , "myposter")
+  
     pstd.appendChild(imgElem)
 
    
@@ -229,7 +223,7 @@ const handleUpdatedata = () => {
                 mid: uid,
                 mName : name ,
                 decrpt : description , 
-                Cname : cinema ,
+                Cname : CinemaName[0].name ,
                 time: timeM,
                 poster : imgP.files[0].name ,
             }
