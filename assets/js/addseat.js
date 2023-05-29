@@ -47,8 +47,8 @@ const handlegetCinema = () => {
         let disp = "";
         localSdata.map((v) => {
             disp += "<tr id=" + "sData-" + v.sid + "> ";
-            disp += "<td>" + v.cid + "</td>";
-            disp += "<td>" + v.mid + "</td>";
+            disp += "<td>" + v.cShow + "</td>";
+            disp += "<td>" + v.mShow + "</td>";
             disp += "<td>" + v.time + "</td>";
             disp += "<td>" + v.seat.length + "</td>";
             disp +=
@@ -78,7 +78,7 @@ const handleChangeMovie = () => {
     console.log(tid);
 
     let timeData = getMovieData.filter((v) => {
-        console.log(" v.mid", v.mid);
+        // console.log(" v.m id", v.mid);
         if (v.mid == tid) {
             return v.time;
         }
@@ -109,8 +109,17 @@ const handleSelectSeat = () => {
    let cinemaName = JSON.parse(localStorage.getItem("cinema"))
    console.log(cinemaName , 'cinemaName');
 
+   let cNameShow = cinemaName.filter((v) => v.cid == cineData) 
+   console.log('cNameShow' , cNameShow[0].name);
+
+   let movieName = JSON.parse(localStorage.getItem("movie"))
+   console.log(movieName   , 'movieName');
+
+   let mNameShow = movieName.filter((v) => v.mid ==  movieData)
+   console.log('mNameShow' ,mNameShow[0].mName , movieData);
+
     let seatsIndex = new Array(seatNData + 1).join("0").split("").map(parseFloat);
-    console.log(cineData, movieData, timeData, seatNData, seatsIndex);
+    // console.log(cineData, movieData, timeData, seatNData, seatsIndex);
 
     let rnD = Math.floor(Math.random() * 1000);
 
@@ -120,6 +129,8 @@ const handleSelectSeat = () => {
             sid: rnD,
             cid: cineData,
             mid: movieData,
+            cShow : cNameShow[0].name ,
+            mShow : mNameShow[0].mName ,
             time: timeData,
             seat: seatsIndex
         }]));
@@ -129,6 +140,8 @@ const handleSelectSeat = () => {
             sid: rnD,
             cid: cineData,
             mid: movieData,
+            cShow : cNameShow[0].name ,
+            mShow : mNameShow[0].mName ,
             time: timeData,
             seat: seatsIndex
         });
@@ -152,8 +165,8 @@ const handleSelectSeat = () => {
     rbtnElm.setAttribute("onclick", "handleRemove(" + rnD + ")");
     ebtnElm.setAttribute("onclick", "handleEdit(" + rnD + ")");
 
-    let cineText = document.createTextNode(cineData);
-    let mvText = document.createTextNode(movieData);
+    let cineText = document.createTextNode(cNameShow[0].name);
+    let mvText = document.createTextNode(mNameShow[0].mName);
     let timeText = document.createTextNode(timeData);
     let seatText = document.createTextNode(seatNData);
 
@@ -215,8 +228,8 @@ const handleEdit = (i) => {
 
     uid = seatData[0].sid;
 
-    let cData = seatData[0].cid;
-    let mData = seatData[0].mid;
+    let cData = seatData[0].cShow;
+    let mData = seatData[0].mShow;
     let tData = seatData[0].time;
     let sData = seatData[0].seat;
 
@@ -243,14 +256,26 @@ const handleUpdateData = () => {
     let upTime = document.getElementById("timeM").value;
     let upSeat = parseInt(document.getElementById("seatN").value);
 
+    let cinemaName = JSON.parse(localStorage.getItem("cinema"))
+    console.log(cinemaName , 'cinemaName');
+ 
+    let cNameShow = cinemaName.filter((v) => v.cid == upCinema) 
+    console.log('cNameShow' , cNameShow[0].name);
+ 
+    let movieName = JSON.parse(localStorage.getItem("movie"))
+    console.log(movieName   , 'movieName');
+ 
+    let mNameShow = movieName.filter((v) => v.mid ==  upMovie)
+    console.log('mNameShow' ,mNameShow[0].mName);
+
     let seatsIndex = new Array(upSeat + 1).join("0").split("").map(parseFloat);
 
     console.log(upCinema, upMovie, upTime, upSeat);
 
     let perentElem = document.getElementById("sData-" + uid);
 
-    perentElem.children[0].textContent = upCinema;
-    perentElem.children[1].textContent = upMovie;
+    perentElem.children[0].textContent = cNameShow[0].name;
+    perentElem.children[1].textContent = mNameShow[0].mName;
     perentElem.children[2].textContent = upTime;
     perentElem.children[3].textContent = seatsIndex.length;
 
@@ -262,6 +287,8 @@ const handleUpdateData = () => {
                 sid: uid,
                 cid: upCinema,
                 mid: upMovie,
+                cShow : cNameShow[0].name ,
+                mShow : mNameShow[0].mName ,
                 time: upTime,
                 seat: seatsIndex,
             };
