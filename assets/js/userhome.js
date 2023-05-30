@@ -10,17 +10,16 @@ const getCMUserSide = (data) => {
     let getMovieData = JSON.parse(localStorage.getItem("movie"));
     console.log("get movie", getMovieData);
 
+   
 
-
-    console.log(data);
 
     if (getCinemaData != null) {
         let disp = ''
         getCinemaData.map((v) => {
             disp += ' <div id=' + "data-" + v.cid + ' class="col-12 col-sm-6 col-lg-3">'
-            disp += ' <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
+            disp += ' <div  class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
             disp += ' <div class="advisor_thumb"><img src=' + '../assets/images/' + v.imageC + '>'
-            disp += ' <div class="social-info">' + v.name + '</div>'
+            disp += ' <div  class="social-info">' + v.name + '</div>'
             disp += ' <div class="single_advisor_details_info">' + v.location + '</div>'
             disp += ' <div class="single_advisor_details_info">' + v.facility + '</div>'
             disp += '</div>'
@@ -29,13 +28,11 @@ const getCMUserSide = (data) => {
         })
         document.getElementById("trCine").innerHTML = disp
     }
-
-    console.log(data);
-
+  
     if (getMovieData != null) {
         let disp = ''
         getMovieData.map((v) => {
-            disp += '<button onclick="handleMovieDetails()" >'
+            disp += '<button  onclick="handleMovieDetails()" >'
             disp += ' <div id=' + "data-" + v.mid + ' class="col-12 col-sm-6 col-lg-3">'
             disp += ' <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
             disp += ' <div class="advisor_thumb"><img src=' + '../assets/images/' + v.poster + '>'
@@ -161,11 +158,14 @@ const display1 = (data1) => {
 }
 
 const handleMovieDetails  = () => {
-    let mDetails = JSON.parse(localStorage.getItem("movie"))
+  let mdet = JSON.parse(localStorage.getItem("movie"))
+  console.log(mdet[0].mName);
 
-    console.log(mDetails);
-    
-    sessionStorage.setItem("mDatails" , JSON.stringify(mDetails))
+
+    let mm = document.getElementById("data-"+mid).value
+    console.log(mm);
+
+    sessionStorage.setItem("mDatails" , JSON.stringify(mdet))
 
     window.location = "./moviedetails.html"
 }
