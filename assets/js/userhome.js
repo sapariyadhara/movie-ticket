@@ -16,12 +16,14 @@ const getCMUserSide = (data) => {
     if (getCinemaData != null) {
         let disp = ''
         getCinemaData.map((v) => {
+            disp += '<button  onclick="handleCinemaDetails('+ v.cid +')" >'
             disp += ' <div id=' + "data-" + v.cid + ' class="col-12 col-sm-6 col-lg-3">'
             disp += ' <div  class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
             disp += ' <div class="advisor_thumb"><img src=' + '../assets/images/' + v.imageC + '>'
             disp += ' <div  class="social-info">' + v.name + '</div>'
             disp += ' <div class="single_advisor_details_info">' + v.location + '</div>'
             disp += ' <div class="single_advisor_details_info">' + v.facility + '</div>'
+            disp += '</div>'
             disp += '</div>'
             disp += '</div>'
             disp += '</div>'
@@ -32,7 +34,7 @@ const getCMUserSide = (data) => {
     if (getMovieData != null) {
         let disp = ''
         getMovieData.map((v) => {
-            disp += '<button  onclick="handleMovieDetails()" >'
+            disp += '<button  onclick="handleMovieDetails('+ v.mid +')" >'
             disp += ' <div id=' + "data-" + v.mid + ' class="col-12 col-sm-6 col-lg-3">'
             disp += ' <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" >'
             disp += ' <div class="advisor_thumb"><img src=' + '../assets/images/' + v.poster + '>'
@@ -157,17 +159,27 @@ const display1 = (data1) => {
     }
 }
 
-const handleMovieDetails  = () => {
+const handleMovieDetails  = (mid) => {
   let mdet = JSON.parse(localStorage.getItem("movie"))
-  console.log(mdet[0].mName);
+  console.log(mdet , mid);
 
+  
 
-    let mm = document.getElementById("data-"+mid).value
-    console.log(mm);
-
-    sessionStorage.setItem("mDatails" , JSON.stringify(mdet))
+    sessionStorage.setItem("mid" , JSON.stringify(mid))
+  
 
     window.location = "./moviedetails.html"
+}
+
+const handleCinemaDetails = (cid) => {
+    let cdet = JSON.parse(localStorage.getItem("cinema"))
+
+
+    sessionStorage.setItem("cid" , JSON.stringify(cid))
+    console.log(cdet , cid);
+
+    window.location = "./cinemadetails.html"
+
 }
 
 searchRef.addEventListener("keyup", handleSearchCinema)
