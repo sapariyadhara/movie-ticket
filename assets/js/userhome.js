@@ -26,7 +26,7 @@ const getCMUserSide = (data) => {
             disp += '</div>'
             disp += '</div>'
             disp += '</div>'
-            disp += '</div>'
+            disp += '</button>'
         })
         document.getElementById("trCine").innerHTML = disp
     }
