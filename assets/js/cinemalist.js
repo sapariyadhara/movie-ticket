@@ -68,10 +68,14 @@ const handleSelectTime = (cid) => {
         })
         if (timeA) {
             let disp = ''
-            timeA.map((v , i) => {
-                disp += '<div>' + v.time[i] + '</div>'
-                disp += '<div>' + v.time[1] + '</div>'
+            timeA.map((v) => {
+                disp += '<div>' + '<button>' + v.time + '</button>' + '</div>'
             })
+
+            // disp += '<div>' +'<button>' + v.time[1] +'</button>'+ '</div>'
+            // disp += '<div>' +'<button>' + v.time[2] +'</button>'+ '</div>'
+            // disp += '<div>' + v.time[1] + '</div>'
+
             document.getElementById("times").innerHTML = disp
         }
     }
