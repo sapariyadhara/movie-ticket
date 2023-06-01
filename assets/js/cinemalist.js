@@ -37,7 +37,7 @@ const handleCinemaName = () => {
                         disp += '<div>'
                         disp += ' <h1>' + "Cinema :" + t.name + '</h1>'
                         disp += '<button onclick="handleSelectTime(' + t.cid + ')">Show Time</button>'
-                        disp += '<div id="times"> </div>'
+                        disp += '<div id= "times-' + t.cid + '"> </div>'
                         disp += '<h3>' + "Location :" + t.location + '</h3>'
                         disp += '<h3>' + "Facility :" + t.facility + '</h3>'
                         disp += '</div>'
@@ -66,17 +66,24 @@ const handleSelectTime = (cid) => {
         timeA.push({
             time: tData[0].time
         })
+        console.log("timeA", timeA);
         if (timeA) {
             let disp = ''
-            timeA.map((v) => {
-                disp += '<div>' + '<button>' + v.time + '</button>' + '</div>'
-            })
+            // timeA.map((v , i) => {
+            //     disp += '<div>' + '<button>' + v.time[0] + '</button>' + '</div>'
+            // })
+         
+            for(let i = 0 ; i < timeA[0].time.length ; i++){
+                console.log('i' , i);
+                disp += '<div>' + '<button>' +  timeA[0].time[i] + '</button>' + '</div>'
+              
+              }
 
             // disp += '<div>' +'<button>' + v.time[1] +'</button>'+ '</div>'
             // disp += '<div>' +'<button>' + v.time[2] +'</button>'+ '</div>'
             // disp += '<div>' + v.time[1] + '</div>'
 
-            document.getElementById("times").innerHTML = disp
+            document.getElementById("times-"+cid).innerHTML = disp
         }
     }
 
