@@ -77,15 +77,18 @@ const handleSelectTime = (cid) => {
             document.getElementById("times-"+cid).innerHTML = disp
         }
     }
-
+    sessionStorage.setItem("time" , JSON.stringify(timeA))
     console.log(timeA);
 
 }
 
 const handleTime = (cid ) => {
+    let getTime = JSON.parse(sessionStorage.getItem("time"))
+    console.log(getTime[0].time);
     console.log('handleTime' , cid);
     let allMovieData = JSON.parse(localStorage.getItem("movie"))
     console.log(allMovieData);
+    // console.log(allMovieData);
     let allSeatData = JSON.parse(localStorage.getItem("seat"))
     console.log(allSeatData);
     let selectSeat = allSeatData.filter((s) => s.cid == cid && s.mid == allMovieData.mid)
