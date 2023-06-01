@@ -68,26 +68,28 @@ const handleSelectTime = (cid) => {
         })
         console.log("timeA", timeA);
         if (timeA) {
-            let disp = ''
-            // timeA.map((v , i) => {
-            //     disp += '<div>' + '<button>' + v.time[0] + '</button>' + '</div>'
-            // })
-         
+            let disp = ''      
             for(let i = 0 ; i < timeA[0].time.length ; i++){
-                console.log('i' , i);
-                disp += '<div>' + '<button>' +  timeA[0].time[i] + '</button>' + '</div>'
-              
+                let t = timeA[0].time[i]
+                console.log('i' , i , timeA[0].time[i]);
+                disp += '<div>' + '<button onclick="handleTime('+ cid + ')">' +  timeA[0].time[i] + '</button>' + '</div>'            
               }
-
-            // disp += '<div>' +'<button>' + v.time[1] +'</button>'+ '</div>'
-            // disp += '<div>' +'<button>' + v.time[2] +'</button>'+ '</div>'
-            // disp += '<div>' + v.time[1] + '</div>'
-
             document.getElementById("times-"+cid).innerHTML = disp
         }
     }
 
     console.log(timeA);
+
+}
+
+const handleTime = (cid ) => {
+    console.log('handleTime' , cid);
+    let allMovieData = JSON.parse(localStorage.getItem("movie"))
+    console.log(allMovieData);
+    let allSeatData = JSON.parse(localStorage.getItem("seat"))
+    console.log(allSeatData);
+    let selectSeat = allSeatData.filter((s) => s.cid == cid && s.mid == allMovieData.mid)
+    console.log(selectSeat);
 
 }
 
