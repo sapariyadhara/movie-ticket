@@ -57,7 +57,7 @@ const handleSelectTime = (cid) => {
     console.log(movieName);
     let allMovieData = JSON.parse(localStorage.getItem("movie"))
     console.log(allMovieData);
-
+//    let rndm = Math.floor(Math.random() * 1000)
     let tData = allMovieData.filter((t) => t.cid == cid && t.mName == movieName)
     console.log(tData);
 
@@ -72,27 +72,37 @@ const handleSelectTime = (cid) => {
             for(let i = 0 ; i < timeA[0].time.length ; i++){
                 let t = timeA[0].time[i]
                 console.log('i' , i , timeA[0].time[i]);
-                disp += '<div>' + '<button onclick="handleTime('+ cid + ')">' +  timeA[0].time[i] + '</button>' + '</div>'            
+                disp += `<div><button id="time-${ timeA[0].time[i]}"  onclick="handleTime(${cid},'${timeA[0].time[i] }')">${ timeA[0].time[i] }</button></div>`            
               }
             document.getElementById("times-"+cid).innerHTML = disp
         }
     }
-    sessionStorage.setItem("time" , JSON.stringify(timeA))
+ 
     console.log(timeA);
+
+    
 
 }
 
-const handleTime = (cid ) => {
+const handleTime = ( cid, time ) => {
+    console.log(cid, time);
+   
     let getTime = JSON.parse(sessionStorage.getItem("time"))
-    console.log(getTime[0].time);
-    console.log('handleTime' , cid);
+ 
+  
     let allMovieData = JSON.parse(localStorage.getItem("movie"))
     console.log(allMovieData);
-    // console.log(allMovieData);
+    let getmovieName = JSON.parse(sessionStorage.getItem("mNames"))
+    console.log(allMovieData ,getmovieName);
     let allSeatData = JSON.parse(localStorage.getItem("seat"))
     console.log(allSeatData);
-    let selectSeat = allSeatData.filter((s) => s.cid == cid && s.mid == allMovieData.mid)
-    console.log(selectSeat);
+    // let selectSeat = allSeatData.filter((s) => s.cid == cid && s.mShow == getmovieName && s.time == getTime)
+    // console.log(selectSeat );
+
+    sessionStorage.setItem("cid" , JSON.stringify(cid))
+    sessionStorage.setItem("stime" , JSON.stringify(time))
+    
+    window.location = "./seatlist.html"
 
 }
 

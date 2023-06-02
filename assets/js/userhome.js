@@ -161,8 +161,8 @@ const display1 = (data1) => {
 
 const handleMovieDetails  = (mid) => {
   let mdet = JSON.parse(localStorage.getItem("movie"))
-  console.log(mdet , mid);
-
+  console.log(mdet );
+    // let movieName = JSON.parse()
   
 
     sessionStorage.setItem("mid" , JSON.stringify(mid))
