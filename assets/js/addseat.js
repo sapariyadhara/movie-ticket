@@ -51,6 +51,7 @@ const handlegetCinema = () => {
             disp += "<td>" + v.mShow + "</td>";
             disp += "<td>" + v.time + "</td>";
             disp += "<td>" + v.seat.length + "</td>";
+            disp += "<td>" + v.tickets + "</td>"
             disp +=
                 "<td>" +
                 '<button onclick="handleRemove(' +
@@ -105,6 +106,10 @@ const handleSelectSeat = () => {
     let movieData = document.getElementById("movieN").value;
     let timeData = document.getElementById("timeM").value;
     let seatNData = parseInt(document.getElementById("seatN").value);
+    let mTicketsData = parseInt(document.getElementById("mTickets").value);
+
+    console.log(mTicketsData);
+
 
    let cinemaName = JSON.parse(localStorage.getItem("cinema"))
    console.log(cinemaName , 'cinemaName');
@@ -132,7 +137,8 @@ const handleSelectSeat = () => {
             cShow : cNameShow[0].name ,
             mShow : mNameShow[0].mName ,
             time: timeData,
-            seat: seatsIndex
+            seat: seatsIndex,
+            tickets : mTicketsData
         }]));
     } else {
         console.log("2");
@@ -143,7 +149,8 @@ const handleSelectSeat = () => {
             cShow : cNameShow[0].name ,
             mShow : mNameShow[0].mName ,
             time: timeData,
-            seat: seatsIndex
+            seat: seatsIndex,
+            tickets : mTicketsData
         });
 
         localStorage.setItem("seat", JSON.stringify(sArr));
@@ -156,6 +163,7 @@ const handleSelectSeat = () => {
     let mvtd = document.createElement("td");
     let timetd = document.createElement("td");
     let seattd = document.createElement("td");
+    let mtstd = document.createElement("td");
 
     let rBtntd = document.createElement("td");
     let eBtntd = document.createElement("td");
@@ -169,6 +177,7 @@ const handleSelectSeat = () => {
     let mvText = document.createTextNode(mNameShow[0].mName);
     let timeText = document.createTextNode(timeData);
     let seatText = document.createTextNode(seatNData);
+    let ticketText = document.createTextNode(mTicketsData);
 
     let rbtext = document.createTextNode("X");
     let ebtext = document.createTextNode("Edit");
@@ -177,6 +186,8 @@ const handleSelectSeat = () => {
     trElem.appendChild(mvtd);
     trElem.appendChild(timetd);
     trElem.appendChild(seattd);
+    trElem.appendChild(mtstd);
+
 
     trElem.appendChild(rBtntd);
     trElem.appendChild(eBtntd);
@@ -188,6 +199,7 @@ const handleSelectSeat = () => {
     mvtd.appendChild(mvText);
     timetd.appendChild(timeText);
     seattd.appendChild(seatText);
+    mtstd.appendChild(ticketText);
 
     rbtnElm.appendChild(rbtext);
     ebtnElm.appendChild(ebtext);
@@ -232,11 +244,13 @@ const handleEdit = (i) => {
     let mData = seatData[0].mShow;
     let tData = seatData[0].time;
     let sData = seatData[0].seat;
+    let mtData = seatData[0].tickets;
 
-    console.log(cData, mData, tData, sData);
+    console.log(cData, mData, tData, sData ,mtData);
 
     document.getElementById("cinemaN").value = cData;
     document.getElementById("seatN").value = sData.length;
+    document.getElementById("mTickets").value = mtData;
 
     if (supdate) {
         handleChangeCinema();
@@ -255,6 +269,7 @@ const handleUpdateData = () => {
     let upMovie = document.getElementById("movieN").value;
     let upTime = document.getElementById("timeM").value;
     let upSeat = parseInt(document.getElementById("seatN").value);
+    let uptickets = parseInt(document.getElementById("mTickets").value);
 
     let cinemaName = JSON.parse(localStorage.getItem("cinema"))
     console.log(cinemaName , 'cinemaName');
@@ -278,6 +293,7 @@ const handleUpdateData = () => {
     perentElem.children[1].textContent = mNameShow[0].mName;
     perentElem.children[2].textContent = upTime;
     perentElem.children[3].textContent = seatsIndex.length;
+    perentElem.children[4].textContent = uptickets;
 
 
 
@@ -291,6 +307,7 @@ const handleUpdateData = () => {
                 mShow : mNameShow[0].mName ,
                 time: upTime,
                 seat: seatsIndex,
+                tickets : uptickets ,
             };
         } else {
             return a;

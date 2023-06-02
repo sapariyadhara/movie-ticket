@@ -25,6 +25,7 @@ const handleCinemaDetails  = () => {
         })
         document.getElementById("cinemaD").innerHTML = disp
     }
+    
 }
 
 
