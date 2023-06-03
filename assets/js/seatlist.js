@@ -3,8 +3,7 @@ let seatArr = [];
 
 
 const handleShowSeat = () => {
-    let getBookT = JSON.parse(localStorage.getItem("bookT"))
-    console.log(getBookT);
+  
 
     let getTime = JSON.parse(sessionStorage.getItem("stime"))
     console.log(getTime );
@@ -19,31 +18,37 @@ const handleShowSeat = () => {
  
      let selectSeat = allSeatData.filter((s) => s.cid == getCid && s.mShow == getmovieName && s.time == getTime)
 
-     let bookData = selectSeat[0].tickets ==  getBookT[0].seat
-     
-    console.log(bookData);
+    
 
    
    
     if (selectSeat[0].seat ) {
         console.log(selectSeat[0].seat );
-        console.log(getBookT[0].seat);
+    
         let ss = 0
         let disp = ''  
-        for(let i = 0 ; i < selectSeat[0].seat.length ; i++){
-
+        for(let i = 0 ; i < selectSeat[0].seat.length ; i++){     
+          
           ss = selectSeat[0].seat[i] + ss + 1
-        //    console.log(ss ,selectSeat[0].seat);
+        //    console.log(ss ,selectSeat[0].seat[i]);
          
-            disp += `<div id="nBtn"><button id="st-${[i]}" onclick="handleBookSeat(${i} , '${selectSeat[0].seat}' , '${selectSeat[0].tickets}')">${ss}</button></div>`            
+            disp += `<div id="nBtn"><button id="st-${[i]}" onclick="handleBookSeat(${i} , '${selectSeat[0].seat}' , '${selectSeat[0].tickets}')">${i +1}</button></div>`            
           }
         document.getElementById("sbtun").innerHTML = disp
     } 
 
+    for(let j = 0 ; j < selectSeat[0].seat.length ; j++){
+        console.log(selectSeat[0].seat[j]);
+          if(selectSeat[0].seat[j] == 1){
+            document.getElementById("st-"+[j]).disabled = true
+            document.getElementById("st-"+[j]).style.backgroundColor = "green"
+            document.getElementById("st-"+[j]).style.color = "white"  
 
-    // if(getBookT[0].seat){
-    //     console.log(getBookT[0].seat);
-    // }
+          }
+       
+        }
+
+  
 
     document.getElementById("movieN").innerHTML = getmovieName
 
@@ -127,26 +132,46 @@ const handleCheckOut = () => {
  
     let selectSeat = allSeatData.filter((s) => s.cid == getCid && s.mShow == getmovieName && s.time == getTime)
 
-    console.log(selectSeat[0].seat);    
+    let seatF = selectSeat[0].seat
+
+    console.log(seatF );    
  
     // for(let i = 0 ; i < selectSeat[0].seat.length ; i++){
     //     console.log(selectSeat[0].seat[0]);
 
     // }
 
-    selectSeat[0].seat.map((v , i) => {
+    seatF.map((v , i) => {
         // console.log(v , i);
         seatArr.map((l , k) => {
             // console.log(l , k);
             if(i == l){
               
-                selectSeat[0].seat[i] = 1 
-                console.log(selectSeat);
+                seatF[i] = 1 
+                
+                
             }
         })
     })
+    console.log(seatF);
 
-    localStorage.setItem("bookT" , JSON.stringify(selectSeat))
+   let seatupDate = allSeatData.map((v , i) => {
+
+        if(v.sid === selectSeat[0].sid){
+            console.log(v.sid == selectSeat[0].sid);
+            allSeatData.push({
+              seat : seatF
+            })
+            
+           
+        } else {
+            return allSeatData
+        }
+
+    })
+    console.log(allSeatData);
+    localStorage.setItem("seat" , JSON.stringify(allSeatData))
+
 
     event.preventDefault()
 }
