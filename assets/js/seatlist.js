@@ -41,8 +41,9 @@ const handleShowSeat = () => {
         console.log(selectSeat[0].seat[j]);
           if(selectSeat[0].seat[j] == 1){
             document.getElementById("st-"+[j]).disabled = true
-            document.getElementById("st-"+[j]).style.backgroundColor = "green"
+            document.getElementById("st-"+[j]).style.backgroundColor = "grey"
             document.getElementById("st-"+[j]).style.color = "white"  
+            document.getElementById("st-"+[j]).style.border = "white"  
 
           }
        
@@ -108,7 +109,7 @@ const handleBookSeat = (i , seat ,tickets) => {
        
         let mTick = tickets * seatArr.length
    
-    document.getElementById("tt").innerHTML = "$" + mTick 
+    document.getElementById("tt").innerHTML = "Pay Rs." + mTick+".00" 
     } 
     // sessionStorage.setItem("seatArr" , JSON.stringify(seatArr))
     
@@ -128,18 +129,17 @@ const handleCheckOut = () => {
     let allSeatData = JSON.parse(localStorage.getItem("seat"))
     console.log(allSeatData[0].time ,allSeatData );
 
-   
- 
     let selectSeat = allSeatData.filter((s) => s.cid == getCid && s.mShow == getmovieName && s.time == getTime)
+
+    // let selectSeat[0].mShow 
+    document.getElementById("exampleModalLabel").innerHTML = selectSeat[0].mShow
+    document.getElementById("TTcShow").innerHTML = 'Cinema :' + selectSeat[0].cShow
+    document.getElementById("TTtime").innerHTML = 'Time :' + selectSeat[0].time
+
 
     let seatF = selectSeat[0].seat
 
     console.log(seatF );    
- 
-    // for(let i = 0 ; i < selectSeat[0].seat.length ; i++){
-    //     console.log(selectSeat[0].seat[0]);
-
-    // }
 
     seatF.map((v , i) => {
         // console.log(v , i);
