@@ -18,7 +18,7 @@ const handleShowSeat = () => {
    
    
     if (selectSeat) {
-        let ss = -1
+        let ss = 0
         let disp = ''  
         for(let i = 0 ; i < selectSeat[0].seat.length ; i++){
 
@@ -48,8 +48,27 @@ const handleBookSeat = (i , seat ,tickets) => {
     let getTickets = JSON.parse(localStorage.getItem("seat"))
     console.log(getTickets);
     console.log("book",i ,seat ,tickets);
-   tickets = tickets 
-  
+    tickets = tickets 
+    // let flag = false 
+
+
+    let getTime = JSON.parse(sessionStorage.getItem("stime"))
+    console.log(getTime );
+    let getCid = JSON.parse(sessionStorage.getItem("cid"))
+    console.log(getCid);
+    let getmovieName = JSON.parse(sessionStorage.getItem("mNames"))
+    console.log(getmovieName);
+    let allSeatData = JSON.parse(localStorage.getItem("seat"))
+    console.log(allSeatData[0].time ,allSeatData[0].cShow );
+
+   
+ 
+     let selectSeat = allSeatData.filter((s) => s.cid == getCid && s.mShow == getmovieName && s.time == getTime)
+
+     
+    console.log(selectSeat[0].seat );
+ 
+
     if(i){
       
         seat = 1
@@ -57,6 +76,10 @@ const handleBookSeat = (i , seat ,tickets) => {
         document.getElementById("st-"+[i]).innerHTML = seat
         document.getElementById("st-"+[i]).style.backgroundColor = "green"
         document.getElementById("st-"+[i]).style.color = "white"   
+        // for(){
+
+        // }
+
        
     }
     
