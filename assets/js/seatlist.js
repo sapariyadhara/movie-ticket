@@ -110,6 +110,7 @@ const handleBookSeat = (i , seat ,tickets) => {
         let mTick = tickets * seatArr.length
    
     document.getElementById("tt").innerHTML = "Pay Rs." + mTick+".00" 
+    document.getElementById("TTct").innerHTML = "TiCkets : " + seatArr.length  +"   Pay Rs.   " + mTick+".00"
     } 
     // sessionStorage.setItem("seatArr" , JSON.stringify(seatArr))
     
@@ -135,6 +136,7 @@ const handleCheckOut = () => {
     document.getElementById("exampleModalLabel").innerHTML = selectSeat[0].mShow
     document.getElementById("TTcShow").innerHTML = 'Cinema :' + selectSeat[0].cShow
     document.getElementById("TTtime").innerHTML = 'Time :' + selectSeat[0].time
+  
 
 
     let seatF = selectSeat[0].seat
