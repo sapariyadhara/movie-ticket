@@ -36,14 +36,17 @@ const handleCinemaName = () => {
                 if (temp1) {
                     let disp = ''
                     temp1.map((t) => {
+                        disp += '<div id="ci11">'
                         disp += ' <div id="clImg"><img src=' + '../assets/images/' + t.imageC + '></div>'
-                        disp += '<div>'
-                        disp += ' <h1>' + "Cinema :" + t.name + '</h1>'
-                        disp += '<button onclick="handleSelectTime(' + t.cid + ')">Show Time</button>'
-                        disp += '<div id= "times-' + t.cid + '"> </div>'
-                        disp += '<h3>' + "Location :" + t.location + '</h3>'
-                        disp += '<h3>' + "Facility :" + t.facility + '</h3>'
+                        disp += '<div id="datac">'
+                        disp += ' <h1>' + "Cinema : " + t.name + '</h1>'
+                        disp += '<button id="c1btn" onclick="handleSelectTime(' + t.cid + ')">Show Time</button>'
+                        disp += '<div class="time1" id= "times-' + t.cid + '"> </div>'
+                        disp += '<h3>' + "Location : " + t.location + '</h3>'
+                        disp += '<h3>' + "Facility : " + t.facility + '</h3>'
                         disp += '</div>'
+                        disp += '</div>'
+                        disp += '<hr>'
                     })
                     document.getElementById("cList").innerHTML = disp
                 }
@@ -75,7 +78,7 @@ const handleSelectTime = (cid) => {
             for(let i = 0 ; i < timeA[0].time.length ; i++){
                 let t = timeA[0].time[i]
                 console.log('i' , i , timeA[0].time[i]);
-                disp += `<div><button id="time-${ timeA[0].time[i]}"  onclick="handleTime(${cid},'${timeA[0].time[i] }')">${ timeA[0].time[i] }</button></div>`            
+                disp += `<div><button class="bb11" id="time-${ timeA[0].time[i]}"  onclick="handleTime(${cid},'${timeA[0].time[i] }')">${ timeA[0].time[i] }</button></div>`            
               }
             document.getElementById("times-"+cid).innerHTML = disp
         }
