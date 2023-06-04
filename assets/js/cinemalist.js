@@ -3,6 +3,9 @@
 const handleCinemaName = () => {
     let getMName = JSON.parse(sessionStorage.getItem("mNames"))
     console.log(getMName);
+
+    document.getElementById("mn1").innerHTML = getMName
+
     let getAllMovie = JSON.parse(localStorage.getItem("movie"))
     console.log(getAllMovie);
 

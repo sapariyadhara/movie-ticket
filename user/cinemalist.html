@@ -60,11 +60,11 @@
             padding-top: 8px;
         }
 
-        .navbar {
+        /* .navbar {
 
             padding-top: 0.5rem;
             padding-bottom: 0rem;
-        }
+        } */
 
         .col-form-label {
             margin-right: 19px;
@@ -74,45 +74,91 @@
     height: 300px;
         }
     </style>
+    <style>
+         .nn1 .nav-link {
+            font-size: 16px;
+            color:gainsboro;
+        }
+
+        .nn1 {
+            display: flex;
+            width: 100%;
+            background: #222539
+        }
+        .nav {
+            background-color: #222539;
+            padding: 0 224px
+        }
+        .container-fluid img {
+            width: 140px;
+            height: 73px;
+            padding-top: 8px;
+            margin-left: 13.6rem;
+            margin-right: 15px;
+        }
+        .me-2 {
+    margin-right: 17.5rem !important;
+        }
+        .movien1{
+            width: 100%;
+            height: 130px;
+            background-color: #333545 ;
+            padding-left: 15rem;
+        }
+        .bg-dark {
+    background-color: #333545 !important;
+        }
+        #mn1{
+            padding-top: 18px;
+    font-size: 44px;
+    color: #fff;
+  
+        }
+        .movien1 button{
+        color:  rgba(255,255,255,.5);
+        background-color: transparent;
+        border: 1px solid rgba(255,255,255,.5);
+        border-radius: 25px;
+        font-size: 11px;
+        } 
+    </style>
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <img src="../assets/images/bookmy.png" alt="">
+            <img src="../assets/images/bookmy111.png" alt="">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./userhome.html">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            City
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">surat</a></li>
-                            <li><a class="dropdown-item" href="#">Valsad</a></li>
-                            <li><a class="dropdown-item" href="#">Rajkot</a></li>
-                            <li><a class="dropdown-item" href="#">Vadodara</a></li>
-                            <li><a class="dropdown-item" href="#">Ahmdabad</a></li>
-                            <li><a class="dropdown-item" href="#">Jamnagar</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">And Other City</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                City
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">surat</a></li>
+                                <li><a class="dropdown-item" href="#">Valsad</a></li>
+                                <li><a class="dropdown-item" href="#">Rajkot</a></li>
+                                <li><a class="dropdown-item" href="#">Vadodara</a></li>
+                                <li><a class="dropdown-item" href="#">Ahmdabad</a></li>
+                                <li><a class="dropdown-item" href="#">Jamnagar</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">And Other City</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     <div class="col-12">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal" data-bs-whatever="@mdo">Sign in</button>
@@ -151,32 +197,58 @@
                     </div>
                 </form>
     </nav>
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+  
+ 
+      <div class="nn1">
+        <ul class="nav n1">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./userhome.html">Movie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Stream</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Plays</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sports</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Activities</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Buzz</a>
+            </li>
+
+        </ul>
+
+        <ul class="nav n2">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">ListYourShow</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Corporates</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Offers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Gift Cards</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="movien1">
+        <div id="mn1">
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="../assets/images/slider1.webp" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../assets/images/slider2.webp" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="../assets/images/slider3.webp" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+        <button>COMEDY</button>
+        <button>DRAMA</button>
+        <button>FAMILY</button>
+    </div>
 
 
     <div id="cList">
