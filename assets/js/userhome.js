@@ -30,6 +30,24 @@ const getCMUserSide = (data) => {
         })
         document.getElementById("trCine").innerHTML = disp
     }
+
+    // if (getCinemaData != null) {
+    //     let disp = ''
+    //     getCinemaData.map((v) => {
+    //         disp += ' <div  class="swiper mySwiper">'
+    //            disp += ' <div id=' + "data-" + v.cid + ' class="swiper-wrapper">'
+    //         // disp += '<button  onclick="handleCinemaDetails('+ v.cid +')" >'
+    //         disp += '<div class="swiper-slide"> <img src=' + '../assets/images/' + v.imageC + '>'
+    //         // disp += ' <div  class=" ">' + v.name + '</div>'
+    //         // disp += ' <div class="">' + v.location + '</div>'
+    //         // disp += ' <div class="">' + v.facility + '</div>'
+    //         disp += '</div>'
+    //         // disp += '</button>'
+    //          disp += ' </div>'
+    //          disp += '</div>'
+    //     })
+    //     document.getElementById("trCine").innerHTML = disp
+    // }
   
     if (getMovieData != null) {
         let disp = ''
