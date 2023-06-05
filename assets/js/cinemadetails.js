@@ -41,6 +41,8 @@ const handleCinemaDetails  = () => {
             disp += '</div>'
         })
         document.getElementById("container1").innerHTML = disp
+
+
     }
     
 }
