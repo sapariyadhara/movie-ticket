@@ -103,7 +103,7 @@ const handleBookSeat = (i , seat ,tickets) => {
         seat = 1
         console.log(seat);
         
-        document.getElementById("st-"+[i]).innerHTML = seat
+        // document.getElementById("st-"+[i]).innerHTML = seat
         document.getElementById("st-"+[i]).style.backgroundColor = "green"
         document.getElementById("st-"+[i]).style.color = "white"   
        
