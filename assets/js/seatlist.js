@@ -54,11 +54,9 @@ const handleShowSeat = () => {
     document.getElementById("movieN").innerHTML = getmovieName
 
     if(selectSeat){
-        let disp1 = ''
-        selectSeat.map((v) => {
-            disp1 += '<div>'+ v.cShow + '</div>'
-        })
-        document.getElementById("cinemaN").innerHTML = disp1
+        console.log(selectSeat[0].cShow);
+      
+        document.getElementById("cinemaN").innerHTML = selectSeat[0].cShow
     }
 
 }
