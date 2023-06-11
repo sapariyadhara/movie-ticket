@@ -334,3 +334,20 @@ cinemaNRef.addEventListener("change", handleChangeCinema);
 movieRef.addEventListener("change", handleChangeMovie);
 enterSeatRef.addEventListener("submit", handleDesc);
 window.onload = handlegetCinema;
+
+
+
+
+
+// Add Cinema 
+
+const handlecinema = () => {
+    window.location = "./addcinema.html"
+}
+
+
+// Add Movie
+const handleMovie = () => {
+    window.location = "./addmovie.html"
+}
+

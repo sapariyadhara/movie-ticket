@@ -211,3 +211,18 @@ cinemaRef.addEventListener("submit" , handleCineDese)
 window.onload = getlocalCineData
 
 
+
+
+// Add Movie
+const handleMovie = () => {
+    window.location = "./addmovie.html"
+}
+
+// Add Seat
+
+const handleSeat = () => {
+    window.location = "./addseat.html"
+}
+
+
+

@@ -10,51 +10,217 @@
      img{
         width: 50px;
         height: 50px;
-    }
+    }  
+        .navbar {
+
+            padding-top: 0.5rem;
+            padding-bottom: 0rem;
+        }
+
+        .col-form-label {
+            margin-right: 19px;
+        }
+
+        .w-100 {
+            width: 100% !important;
+            height: 300px;
+        }
+
+        .bg-dark {
+            background-color: #333545 !important;
+        }
+
+        .container-fluid img {
+            width: 140px;
+            height: 73px;
+            padding-top: 8px;
+            margin-left: 1.6rem;
+            margin-right: 15px;
+        }
+
+        #mImg img {
+            width: 400px;
+            height: 600px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        #clImg img {
+            width: 600px;
+            height: 400px;
+        }
+
+        h1 {
+            display: inline-block;
+        }
+
+        .col-12 {
+            flex: 0 0 auto;
+            width: 11%;
+        }
+
+        .form-control {
+            display: block;
+            width: 647px;
+            height: 40px;
+        }
+
+        .me-2 {
+            margin-left: 53.5rem !important;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+            margin-left: 20px;
+            height: 40px;
+            width: 100px;
+        }
+
+        .btn-outline-success {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+            margin-left: 20px;
+        }
+
+        .btn-primary:hover,
+        .btn-outline-success:hover {
+            background-color: #dc3545;
+            border-color: #fff;
+        }
+
+        .btn-primary:visited {
+            background-color: #dc3545;
+            border-color: #fff;
+            border-color: #dc3545;
+        }
+
+        .n1 {
+            background-color: #333545;
+            padding: 0 20px;
+        }
+
+        .nn1 .nav-link {
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .nn1 {
+            height: 100vh;
+            display: flex;
+            width: 247px;
+            background: #333545;
+
+        }
+
+        .n1 button {
+            width: 200px;
+            margin-top: 50px;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid transparent;
+            border-radius: 5px;
+        }
+
+        .n1 button:hover {
+            border: 2px solid #fff;
+            border-radius: 5px;
+        }
+
+        .n1 li {
+            list-style-type: none;
+        }
+
    </style>
 </head>
 <body>
     
-  
-        <div id="addCinema">
-            <form  method="post" id="cinema-add">
-                <br><br>
-                <label for=""> Cinema Name</label><br>
-                <input type="text" name="name" id="cinema" placeholder="Please Enter Cinema Name: ">
-                <br><br>
-    
-    
-                <label for="">Cinema Location </label><br>
-                <input type="text" name="location" id="location" placeholder="Please Enter Cinema Location: ">
-                <br><br>
-    
-    
-                <label for="">Facility</label><br>
-                <input type="text" name="name" id="facility" placeholder="Please Enter Facility: ">
-                <br><br>
+  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+      
+    <div class="container-fluid">
+        <img src="../assets/images/bookmy111.png" alt="">
 
-                <label for="">Cinema Images</label><br>
-                <input type="file" name="cimages" id="cimages" accept="image/*">
-                <br><br>
-    
-                <input type="submit" value="Add Cinema">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+
+                <div class="">
+                    <a href="../loginpage.html"> <button type="button" class="btn btn-primary"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Log
+                            Out</button></a>
+                </div>
             </form>
+</nav>
+
+<div class="nn1">
+  <ul class=" n1">
+
+      <li>
+          <button id="b1" onclick="handlecinema()">Add Cinema</button>
+      </li>
+      <li>
+          <button id="b2" onclick="handleMovie()">Add Movie</button>
+      </li>
+      <li>
+          <button id="b3" onclick="handleSeat()">Add Seat</button>
+      </li>
+  </ul>
 
 
-            <table class="table">
-            
-                <tr>
-               
-                  <th scope="col">Movies</th>
-                  <th scope="col">Location</th>
-                  <th scope="col">Facility</th>
-                </tr>
-              
-              <tbody id="trCinema">
-                
-              </tbody>
-            </table>
-        </div>
+  <div id="addCinema">
+    <form  method="post" id="cinema-add">
+        <br><br>
+        <label for=""> Cinema Name</label><br>
+        <input type="text" name="name" id="cinema" placeholder="Please Enter Cinema Name: ">
+        <br><br>
+
+
+        <label for="">Cinema Location </label><br>
+        <input type="text" name="location" id="location" placeholder="Please Enter Cinema Location: ">
+        <br><br>
+
+
+        <label for="">Facility</label><br>
+        <input type="text" name="name" id="facility" placeholder="Please Enter Facility: ">
+        <br><br>
+
+        <label for="">Cinema Images</label><br>
+        <input type="file" name="cimages" id="cimages" accept="image/*">
+        <br><br>
+
+        <input type="submit" value="Add Cinema">
+    </form>
+
+
+    <table class="table">
+    
+        <tr>
+       
+          <th scope="col">Movies</th>
+          <th scope="col">Location</th>
+          <th scope="col">Facility</th>
+        </tr>
+      
+      <tbody id="trCinema">
+        
+      </tbody>
+    </table>
+</div>
+</div>
+  
+      
 
     <script src="../assets/js/addcinema.js"></script>
 </body>

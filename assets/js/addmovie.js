@@ -348,3 +348,21 @@ movieRef.addEventListener("submit", handleDisc);
 window.onload = handlegetCinema;
 
 // https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+
+
+
+
+
+
+
+// Add Cinema 
+
+const handlecinema = () => {
+    window.location = "./addcinema.html"
+}
+
+// Add Seat
+
+const handleSeat = () => {
+    window.location = "./addseat.html"
+}
