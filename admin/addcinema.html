@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   <style>
-     img{
-        width: 50px;
-        height: 50px;
-    }  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
         .navbar {
 
             padding-top: 0.5rem;
@@ -135,93 +138,135 @@
         .n1 li {
             list-style-type: none;
         }
-
-   </style>
+        #addCinema{
+            display: flex;
+           
+        }
+        #addCinema  .cibox1{
+            width: 500px;
+            height: 600px;
+            border: 2px solid black;
+            padding-left: 30px;
+            margin: 20px;
+            background-color: #333545;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        #addCinema  .cibox2{
+            margin: 20px 20px 20px 0;
+            width: 1014px;
+        }
+        #addCinema  .cibox1  input{
+            width: 300px;
+            margin-top: 10px
+        }
+        #addCinema  .cibox1  .submit{
+            width: 200px;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 30px auto;
+            display: block;
+            padding: 0;
+        }
+        .table-dark {
+    --bs-table-bg: #222539;
+    --bs-table-striped-bg: #333545;
+        }
+    </style>
 </head>
+
 <body>
-    
-  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-      
-    <div class="container-fluid">
-        <img src="../assets/images/bookmy111.png" alt="">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
 
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <div class="container-fluid">
+            <img src="../assets/images/bookmy111.png" alt="">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 
 
-                <div class="">
-                    <a href="../loginpage.html"> <button type="button" class="btn btn-primary"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Log
-                            Out</button></a>
-                </div>
+                    <div class="">
+                        <a href="../loginpage.html"> <button type="button" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Log
+                                Out</button></a>
+                    </div>
+                </form>
+    </nav>
+
+    <div class="nn1">
+        <ul class=" n1">
+
+            <li>
+                <button id="b1" onclick="handlecinema()">Add Cinema</button>
+            </li>
+            <li>
+                <button id="b2" onclick="handleMovie()">Add Movie</button>
+            </li>
+            <li>
+                <button id="b3" onclick="handleSeat()">Add Seat</button>
+            </li>
+        </ul>
+
+
+        <div id="addCinema">
+           <div class="cibox1">
+            <form method="post" id="cinema-add">
+                <br><br>
+                <label for=""> Cinema Name</label><br>
+                <input type="text" name="name" id="cinema" placeholder="Please Enter Cinema Name: ">
+                <br><br>
+
+
+                <label for="">Cinema Location </label><br>
+                <input type="text" name="location" id="location" placeholder="Please Enter Cinema Location: ">
+                <br><br>
+
+
+                <label for="">Facility</label><br>
+                <input type="text" name="name" id="facility" placeholder="Please Enter Facility: ">
+                <br><br>
+
+                <label for="">Cinema Images</label><br>
+                <input type="file" name="cimages" id="cimages" accept="image/*">
+                <br><br>
+
+                <input class="submit" type="submit" value="Add Cinema">
             </form>
-</nav>
-
-<div class="nn1">
-  <ul class=" n1">
-
-      <li>
-          <button id="b1" onclick="handlecinema()">Add Cinema</button>
-      </li>
-      <li>
-          <button id="b2" onclick="handleMovie()">Add Movie</button>
-      </li>
-      <li>
-          <button id="b3" onclick="handleSeat()">Add Seat</button>
-      </li>
-  </ul>
+           </div>
 
 
-  <div id="addCinema">
-    <form  method="post" id="cinema-add">
-        <br><br>
-        <label for=""> Cinema Name</label><br>
-        <input type="text" name="name" id="cinema" placeholder="Please Enter Cinema Name: ">
-        <br><br>
+           <div class="cibox2">
+            <table class="table table-dark table-striped">
+
+                <tr>
+
+                    <th scope="col">Movies</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Facility</th>
+                    <th scope="col">Poster</th>
+                    <th colspan="2">Action</th>
+                </tr>
+
+                <tbody id="trCinema">
+
+                </tbody>
+            </table>
+           </div>
+        </div>
+    </div>
 
 
-        <label for="">Cinema Location </label><br>
-        <input type="text" name="location" id="location" placeholder="Please Enter Cinema Location: ">
-        <br><br>
-
-
-        <label for="">Facility</label><br>
-        <input type="text" name="name" id="facility" placeholder="Please Enter Facility: ">
-        <br><br>
-
-        <label for="">Cinema Images</label><br>
-        <input type="file" name="cimages" id="cimages" accept="image/*">
-        <br><br>
-
-        <input type="submit" value="Add Cinema">
-    </form>
-
-
-    <table class="table">
-    
-        <tr>
-       
-          <th scope="col">Movies</th>
-          <th scope="col">Location</th>
-          <th scope="col">Facility</th>
-        </tr>
-      
-      <tbody id="trCinema">
-        
-      </tbody>
-    </table>
-</div>
-</div>
-  
-      
 
     <script src="../assets/js/addcinema.js"></script>
 </body>
+
 </html>

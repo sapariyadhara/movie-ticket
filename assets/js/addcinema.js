@@ -119,6 +119,9 @@ const handleCinema = () => {
         localStorage.setItem("cinema", JSON.stringify(arr));
     }
 
+   for(let i = 0 ; i < arr.length ; i ++){
+    console.log(arr.length);
+   }
 
     let trElem = document.createElement("tr");
     trElem.setAttribute("id" , "data-"+rMd)
@@ -141,7 +144,7 @@ const handleCinema = () => {
     let tdtextElem1 = document.createTextNode(cinemaData);
     let tdtextElem2 = document.createTextNode(locationData);
     let tdtextElem3 = document.createTextNode(facilityData);
-    // let tdtextElem31 = document.createTextNode(cimages.files[0].name);
+    let tdtextElem31 = document.createTextNode(cimages.files[0].name);
   
     let rbtextElem = document.createTextNode("X");
     let ebtextElem = document.createTextNode("Edit");
@@ -152,7 +155,7 @@ const handleCinema = () => {
     trElem.appendChild(tdElem1);
     trElem.appendChild(tdElem2);
     trElem.appendChild(tdElem3);
-    // trElem.appendChild(tdElem31);
+    trElem.appendChild(tdElem31);
     trElem.appendChild(tdElem4);
     trElem.appendChild(tdElem5);
 
