@@ -19,11 +19,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-     
-
-       
-
     </style>
     <style>
         .navbar {
@@ -40,9 +35,11 @@
             width: 100% !important;
             height: 300px;
         }
+
         .bg-dark {
             background-color: #333545 !important;
         }
+
         .container-fluid img {
             width: 140px;
             height: 73px;
@@ -50,6 +47,7 @@
             margin-left: 1.6rem;
             margin-right: 15px;
         }
+
         #mImg img {
             width: 400px;
             height: 600px;
@@ -108,6 +106,7 @@
             border-color: #fff;
             border-color: #dc3545;
         }
+
         .n1 {
             background-color: #333545;
             padding: 0 20px;
@@ -122,39 +121,88 @@
             height: 100vh;
             display: flex;
             width: 247px;
-            background:#333545;
-           
+            background: #333545;
+
         }
-        .n1 button{
-            margin-top: 20px;
+
+        .n1 button {
+            width: 200px;
+            margin-top: 50px;
             padding: 10px 20px;
             font-size: 20px;
             border: none;
             background-color: transparent;
             color: #fff;
-            border:2px solid transparent;
+            border: 2px solid transparent;
             border-radius: 5px;
         }
-        .n1 button:hover{
-            border:2px solid #fff;
+
+        .n1 button:hover {
+            border: 2px solid #fff;
             border-radius: 5px;
         }
-        .n1 li{
+
+        .n1 li {
             list-style-type: none;
         }
 
+        #containor {
+            display: flex;
+            margin: 40px 220px;
+        }
+
+        #containor #box1,
+        #containor #box2 {
+            width: 250px;
+            height: 250px;
+            border: 2px solid #333545;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        #box1 {
+            width: 150px;
+            height: 150px;
+            background-blend-mode: multiply;
+            background-position: center;
+            background-size: cover;
+            background-image: linear-gradient(502deg, #333545, #fff);
+        }
+
+        #box2 {
+            background-image: linear-gradient(502deg, #333545, #fff);
+            width: 150px;
+            height: 150px;
+            background-blend-mode: multiply;
+            background-position: center;
+            
+        }
+
+        #containor h1 {
+            font-size: 55px;
+            text-align: center;
+            display: block;
+            margin-top: 30px;
+            color: #fff
+        }
+        #containor p {
+            font-size: 55px;
+            text-align: center;
+            display: block;
+            margin-top: 30px;
+            color: #fff
+        }
+        
     </style>
 </head>
 
 <body>
 
-    <!-- <a href="../registerpage.html">Registration</a>
-    <a href="../loginpage.html"> Log in</a>
-    <a href="#">ADMINHome</a> -->
-
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+      
         <div class="container-fluid">
             <img src="../assets/images/bookmy111.png" alt="">
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -164,11 +212,12 @@
 
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                 
-                   
+
+
                     <div class="">
-                       <a href="../loginpage.html"> <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">Log Out</button></a>
+                        <a href="../loginpage.html"> <button type="button" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Log
+                                Out</button></a>
                     </div>
                 </form>
     </nav>
@@ -176,52 +225,30 @@
 
     <div class="nn1">
         <ul class=" n1">
-           
+
             <li>
                 <button id="b1" onclick="handlecinema()">Add Cinema</button>
             </li>
-            <li >
+            <li>
                 <button id="b2" onclick="handleMovie()">Add Movie</button>
             </li>
-            <li >
+            <li>
                 <button id="b3" onclick="handleSeat()">Add Seat</button>
             </li>
         </ul>
-    </div>
 
-    <!-- <div class="comtainer1">
-        <div id="data1">
-
-            <div id="btn">
-                <div id="p1">
-                 
-                    <button id="b1" onclick="handlecinema()">Add Cinema</button>
-                </div>
-
-                <div id="p2">
-               
-                    <button id="b2" onclick="handleMovie()">Add Movie</button>
-                </div>
-
-                <div id="p3">
-             
-                    <button id="b3" onclick="handleSeat()">Add Seat</button>
-                </div>
+        <div id="containor">
+            <div id="box1">
+                <h1>Cinema</h1>
+                <p id="cl"></p>
+            </div>
+            <div id="box2">
+                <h1>Movie</h1>
+                <p id="ml"></p>
             </div>
         </div>
+    </div>
 
-
-    </div> -->
-
-    <!-- <div class="container">
-        <div id="data">
-            <h1>Admin</h1>
-            <button  onclick="handlecinema()">Add Cinema</button>
-            <br><br>
-            <button onclick="handleMovie()">Add Movie</button>
-            <br><br>
-            <button onclick="handleSeat()">Add Seat</button>
-        </div> -->
 
 
 
