@@ -44,9 +44,12 @@ const handlegetCinema = () => {
     console.log(localSdata);
 
     if (localSdata != null) {
+
         let disp = "";
-        localSdata.map((v) => {
+        localSdata.map((v , i) => {
+            let srNo = i + 1
             disp += "<tr id=" + "sData-" + v.sid + "> ";
+            disp += "<td>" + srNo + "</td>";
             disp += "<td>" + v.cShow + "</td>";
             disp += "<td>" + v.mShow + "</td>";
             disp += "<td>" + v.time + "</td>";
@@ -156,9 +159,18 @@ const handleSelectSeat = () => {
         localStorage.setItem("seat", JSON.stringify(sArr));
     }
 
+    let srNo
+    for(let i = 0 ; i < sArr.length ; i ++){
+     
+      srNo = sArr.length
+    }
+    console.log(sArr.length , srNo);
+
     let trElem = document.createElement("tr");
     trElem.setAttribute("id", "sData-" + rnD);
 
+
+    let srtd = document.createElement("td");
     let cinetd = document.createElement("td");
     let mvtd = document.createElement("td");
     let timetd = document.createElement("td");
@@ -173,6 +185,8 @@ const handleSelectSeat = () => {
     rbtnElm.setAttribute("onclick", "handleRemove(" + rnD + ")");
     ebtnElm.setAttribute("onclick", "handleEdit(" + rnD + ")");
 
+
+    let srText = document.createTextNode(srNo);
     let cineText = document.createTextNode(cNameShow[0].name);
     let mvText = document.createTextNode(mNameShow[0].mName);
     let timeText = document.createTextNode(timeData);
@@ -182,6 +196,7 @@ const handleSelectSeat = () => {
     let rbtext = document.createTextNode("X");
     let ebtext = document.createTextNode("Edit");
 
+    trElem.appendChild(srtd);
     trElem.appendChild(cinetd);
     trElem.appendChild(mvtd);
     trElem.appendChild(timetd);
@@ -195,6 +210,7 @@ const handleSelectSeat = () => {
     rBtntd.appendChild(rbtnElm);
     eBtntd.appendChild(ebtnElm);
 
+    srtd.appendChild(srText);
     cinetd.appendChild(cineText);
     mvtd.appendChild(mvText);
     timetd.appendChild(timeText);
@@ -227,6 +243,8 @@ const handleRemove = (i) => {
     console.log("localSdata", localSdata);
 
     localStorage.setItem("seat", JSON.stringify(localSdata));
+
+    handlegetCinema()
 };
 
 const handleEdit = (i) => {
@@ -240,8 +258,8 @@ const handleEdit = (i) => {
 
     uid = seatData[0].sid;
 
-    let cData = seatData[0].cShow;
-    let mData = seatData[0].mShow;
+    let cData = seatData[0].cid;
+    let mData = seatData[0].mid;
     let tData = seatData[0].time;
     let sData = seatData[0].seat;
     let mtData = seatData[0].tickets;
@@ -287,13 +305,20 @@ const handleUpdateData = () => {
 
     console.log(upCinema, upMovie, upTime, upSeat);
 
+    let srNo ;
+    for(let i = 0 ; i < localSdata.length ; i ++){
+        srNo = localSdata.length
+    }
+
     let perentElem = document.getElementById("sData-" + uid);
 
-    perentElem.children[0].textContent = cNameShow[0].name;
-    perentElem.children[1].textContent = mNameShow[0].mName;
-    perentElem.children[2].textContent = upTime;
-    perentElem.children[3].textContent = seatsIndex.length;
-    perentElem.children[4].textContent = uptickets;
+
+    perentElem.children[0].textContent = srNo;
+    perentElem.children[1].textContent = cNameShow[0].name;
+    perentElem.children[2].textContent = mNameShow[0].mName;
+    perentElem.children[3].textContent = upTime;
+    perentElem.children[4].textContent = seatsIndex.length;
+    perentElem.children[5].textContent = uptickets;
 
 
 
