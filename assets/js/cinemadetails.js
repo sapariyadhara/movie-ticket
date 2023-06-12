@@ -10,21 +10,11 @@ const handleCinemaDetails  = () => {
     let cData = getCineD.filter((v) => v.cid === getCid)
     console.log(cData);
 
-    // if (cData ) {
+    let getMoveData = JSON.parse(localStorage.getItem("movie"))
+    console.log(getMoveData);
 
-    //     let disp = ''
-    //     cData.map((v) => {
-    //         disp += ' <div id="cImg"><img src=' + '../assets/images/' + v.imageC + '></div>'
-    //         disp += '<div>'
-    //         disp += ' <h1>' + v.name + '</h1>'
-    //         disp += ' <h3>' + v.location + '</h3>'
-    //         disp += ' <p>' + v.facility + '</p>'
-           
-    //         disp += '<button> Book Ticket </button>'
-    //         disp += '</div>'
-    //     })
-    //     document.getElementById("container1").innerHTML = disp
-    // }
+    let mData = getMoveData.filter((v) => v.cid == getCid)
+    console.log(mData);
 
     if (cData ) {
 
@@ -41,10 +31,32 @@ const handleCinemaDetails  = () => {
             disp += '</div>'
         })
         document.getElementById("container1").innerHTML = disp
+    }
 
+    if(mData){
 
+        let mdisp = ''
+        mData.map((m) => {
+            mdisp += ' <swiper-slide id="sdmo">' 
+            mdisp += '<button id="mbtns" onclick="handleBtnClick('+ m.mid +')">'
+            mdisp += ' <div class="imgmmm"><img src=' + '../assets/images/' + m.poster + '></div>'
+            mdisp += '<div class="data">'
+            mdisp += ' <h1>' + 'Movie : '  + m.mName + '</h1>'
+            mdisp += '</div>'
+            mdisp += '</button>'
+            mdisp += '</swiper-slide>'
+        })
+        document.getElementById("sliderM").innerHTML = mdisp
     }
     
+}
+
+const handleBtnClick = (mid) => {
+    console.log(mid);
+    sessionStorage.setItem("mid" , JSON.stringify(mid))
+
+    window.location = "./moviedetails.html"
+
 }
 
 
