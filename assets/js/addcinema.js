@@ -15,12 +15,17 @@ const handleupdateCinema = () => {
 
     let perentElem = document.getElementById("data-" + uid)
 
-    console.log(perentElem);
+    let srNo ;
+    for(let i = 0 ; i < localData.length ; i ++){
+        srNo = localData.length
+    }
 
-    perentElem.children[0].textContent = uccinema;
-    perentElem.children[1].textContent = uclocat;
-    perentElem.children[2].textContent = ucfacility;
-    perentElem.children[3].innerHTML ='<img src=' + '../assets/images/' + cimages.files[0].name + '> ' ;
+    console.log(perentElem);
+    perentElem.children[0].textContent = srNo;
+    perentElem.children[1].textContent = uccinema;
+    perentElem.children[2].textContent = uclocat;
+    perentElem.children[3].textContent = ucfacility;
+    perentElem.children[4].innerHTML ='<img src=' + '../assets/images/' + cimages.files[0].name + '> ' ;
 
 
     console.log(uid);
@@ -38,6 +43,8 @@ const handleupdateCinema = () => {
             return a;
         }
     });
+
+    
 
     console.log(cineupData);
     cupdate = false;
@@ -80,8 +87,9 @@ const handleRemove = (i) => {
     });
     console.log('arr',arr);
 
+   
     localStorage.setItem("cinema" , JSON.stringify(arr))
-
+    getlocalCineData()
 }
 
 const handleCinema = () => {
@@ -118,14 +126,17 @@ const handleCinema = () => {
         })
         localStorage.setItem("cinema", JSON.stringify(arr));
     }
-
+    let srNo
    for(let i = 0 ; i < arr.length ; i ++){
-    console.log(arr.length);
+    
+     srNo = arr.length
    }
+   console.log(arr.length , srNo);
 
     let trElem = document.createElement("tr");
     trElem.setAttribute("id" , "data-"+rMd)
 
+    let tdESr = document.createElement("td");
     let tdElem1 = document.createElement("td");
     let tdElem2 = document.createElement("td");
     let tdElem3 = document.createElement("td");
@@ -141,6 +152,7 @@ const handleCinema = () => {
 
     tdElem31.appendChild(imgElem)
 
+    let tdsrText = document.createTextNode(srNo);
     let tdtextElem1 = document.createTextNode(cinemaData);
     let tdtextElem2 = document.createTextNode(locationData);
     let tdtextElem3 = document.createTextNode(facilityData);
@@ -152,6 +164,7 @@ const handleCinema = () => {
     rbElem.setAttribute("onclick" , "handleRemove(" + rMd + ")" );
     ebElem.setAttribute("onclick" , "handleEdit(" + rMd + ")" )
   
+    trElem.appendChild(tdESr);
     trElem.appendChild(tdElem1);
     trElem.appendChild(tdElem2);
     trElem.appendChild(tdElem3);
@@ -163,6 +176,7 @@ const handleCinema = () => {
     tdElem5.appendChild(ebElem);
 
 
+    tdESr.appendChild(tdsrText);
     tdElem1.appendChild(tdtextElem1);
     tdElem2.appendChild(tdtextElem2);
     tdElem3.appendChild(tdtextElem3);
@@ -187,13 +201,21 @@ const handleCineDese = () => {
 const getlocalCineData = () => {
     let ciData = JSON.parse(localStorage.getItem("cinema"))
     console.log("get local" , ciData);
-   
+
+    // let srNo ;
+    // for(let i = 0 ; i < ciData.length ; i ++){
+    //     srNo = localData.length
+    // }
+  
     if(ciData != null){
        
         let disp = '' ;
-        ciData.map(( v ) => {
+        ciData.map(( v , i ) => {
+            console.log(i+1);
+            let srNo = i+1
 
         disp += '<tr id='+ "data-" + v.cid + '> ';
+        disp += '<td>' + srNo + '</td>';
         disp += '<td>' + v.name + '</td>';
         disp += '<td>' + v.location + '</td>';
         disp += '<td>' + v.facility + '</td>';
