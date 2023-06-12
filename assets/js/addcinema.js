@@ -180,7 +180,7 @@ const handleCinema = () => {
     tdElem1.appendChild(tdtextElem1);
     tdElem2.appendChild(tdtextElem2);
     tdElem3.appendChild(tdtextElem3);
-    tdElem3.appendChild(tdtextElem31);
+    // tdElem31.appendChild(tdtextElem31);
     rbElem.appendChild(rbtextElem);
     ebElem.appendChild(ebtextElem);
 

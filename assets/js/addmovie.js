@@ -166,6 +166,8 @@ const handleEdit = (i) => {
 
     let mtime = document.getElementsByName("time")
     let tdivRef = document.getElementById("addtime")
+    let cinRef = document.getElementById("cinemaN").value
+    console.log(cinRef);
 
 
     while(tdivRef.firstChild) {
@@ -193,7 +195,7 @@ const handleEdit = (i) => {
     document.getElementById("decrpt").value = fData[0].decrpt;
     // document.getElementById("imgP") = '../assets/images/'+ imgP.files[0].name;
     document.getElementsByName("time").value = fData[0].time;
-    document.getElementById("cinemaN").value = fData[0].Cname;
+    document.getElementById("cinemaN").value = fData[0].cid;
 }
 
 const handleUpdatedata = () => {
@@ -268,6 +270,7 @@ const handlegetCinema = () => {
 
     if (getCinemaData != null) {
         let mdisp = "";
+        mdisp += "<option value ='0'>" + 'Select Cinema' + "</option>";
         getCinemaData.map((v) => {
             mdisp += "<option value =" + v.cid + ">" + v.name + "</option>";
         });
