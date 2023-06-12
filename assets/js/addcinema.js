@@ -201,11 +201,6 @@ const handleCineDese = () => {
 const getlocalCineData = () => {
     let ciData = JSON.parse(localStorage.getItem("cinema"))
     console.log("get local" , ciData);
-
-    // let srNo ;
-    // for(let i = 0 ; i < ciData.length ; i ++){
-    //     srNo = localData.length
-    // }
   
     if(ciData != null){
        

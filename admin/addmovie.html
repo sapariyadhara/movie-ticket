@@ -138,6 +138,42 @@
         .n1 li {
             list-style-type: none;
         }
+        #addMovie{
+            display: flex;
+        }
+        #addMovie .mobox1{
+            width: 500px;
+            height: 800px;
+            border: 2px solid black;
+            padding-left: 30px;
+            margin: 20px;
+            background-color: #333545;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+        }
+         .mobox2{
+            width: 1014px;
+            margin: 20px 20px 20px 0;
+        }
+        #addMovie .mobox1 #movie{
+            width: 300px;
+            margin-top: 10px
+        }
+        #addMovie .mobox1 #btns{
+            width: 200px;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 30px auto;
+            display: block;
+            padding: 0;
+        }
+        .table-dark {
+    --bs-table-bg: #222539;
+    --bs-table-striped-bg: #333545;
+    width: 1001px;
+
+        }
     </style>
 </head>
 
@@ -186,52 +222,56 @@
 
 
         <div id="addMovie">
-            <form action="" method="post" id="add_movie">
-                <label for=""> Movie Name</label><br>
-                <input type="text" name="name" id="movie" placeholder="Please Enter Movie Name: ">
-                <br><br>
-
-                <label for="">Description</label><br>
-                <textarea name="" id="decrpt" cols="70" rows="5"></textarea>
-                <br><br>
-
-                <label for="">Choose Cinema</label>
-                <select name="CinemaN" id="cinemaN">
-                    <option value="0"> Select Cinema </option>
-                </select>
-
-                <br><br>
-                <div id="addtime">
-                    <label for="time">Time</label>
-                    <input type="time" name="time" id="time">
-                    <input type="button" value="+" id="btnadd" onclick="handleTime()">
-                </div>
-
-                <br><br>
-                <label for="poster">Poster</label>
-                <input type="file" id="imgP" name="cimages" accept="image/*">
-
-                <br><br>
-                <input type="submit" value="Submit">
-                <br><br>
-            </form>
+            <div class="mobox1">
+                <form action="" method="post" id="add_movie">
+                    <label for=""> Movie Name</label><br>
+                    <input type="text" name="name" id="movie" placeholder="Please Enter Movie Name: ">
+                    <br><br>
+    
+                    <label for="">Description</label><br>
+                    <textarea name="" id="decrpt" cols="45" rows="5"></textarea>
+                    <br><br>
+    
+                    <label for="">Choose Cinema</label>
+                    <select name="CinemaN" id="cinemaN">
+                        <option value="0"> Select Cinema </option>
+                    </select>
+    
+                    <br><br>
+                    <div id="addtime">
+                        <label for="time">Time</label>
+                        <input type="time" name="time" id="time">
+                        <input type="button" value="+" id="btnadd" onclick="handleTime()">
+                    </div>
+    
+                    <br><br>
+                    <label for="poster">Poster</label>
+                    <input type="file" id="imgP" name="cimages" accept="image/*">
+    
+                    <br><br>
+                    <input id="btns" type="submit" value="Submit">
+                    <br><br>
+                </form>
+            </div>
         </div>
 
-        <table border="2">
+       <div class="mobox2">
+        <table class="table table-dark table-striped">
             <tr>
-
+                <th scope="col">Sr No.</th>
                 <th scope="col">Movies</th>
                 <th scope="col">Description</th>
                 <th scope="col">Cinema</th>
                 <th scope="col">Time</th>
                 <th scope="col">Poster</th>
-                <th scope="col">Action</th>
+                <th colspan="2">Action</th>
             </tr>
 
             <tbody id="trMovie">
 
             </tbody>
         </table>
+       </div>
 
     </div>
  

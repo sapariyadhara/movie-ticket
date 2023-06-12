@@ -51,12 +51,21 @@ const handleMovie = () => {
         localStorage.setItem("movie", JSON.stringify(arr));
     }
 
+    let srNo
+    for(let i = 0 ; i < arr.length ; i ++){
+     
+      srNo = arr.length
+    }
+    console.log(arr.length , srNo);
+
     console.log("time", timeData);
     console.log(arr);
 
     let trElem = document.createElement("tr");
     trElem.setAttribute("id", "mData-" + movieRnd);
 
+
+    let srtd = document.createElement("td");
     let mvtd = document.createElement("td");
     let dectd = document.createElement("td");
     let cinetd = document.createElement("td");
@@ -80,6 +89,7 @@ const handleMovie = () => {
     rbtnElm.setAttribute("onclick", "handleRemove(" + movieRnd + ")");
     ebtnElm.setAttribute("onclick", "handleEdit(" + movieRnd + ")");
 
+    let srText = document.createTextNode(srNo);
     let mvText = document.createTextNode(mvData);
     let deText = document.createTextNode(decrptData);
     let cineText = document.createTextNode(CinemaName[0].name);
@@ -89,6 +99,7 @@ const handleMovie = () => {
     let rbtext = document.createTextNode("X");
     let ebtext = document.createTextNode("Edit");
 
+    trElem.appendChild(srtd);
     trElem.appendChild(mvtd);
     trElem.appendChild(dectd);
     trElem.appendChild(cinetd);
@@ -100,6 +111,7 @@ const handleMovie = () => {
     rBtntd.appendChild(rbtnElm);
     eBtntd.appendChild(ebtnElm);
 
+    srtd.appendChild(srText);
     mvtd.appendChild(mvText);
     dectd.appendChild(deText);
     cinetd.appendChild(cineText);
@@ -137,7 +149,7 @@ const handleRemove = (i) => {
    
 
     localStorage.setItem("movie", JSON.stringify(arrR))
-
+    handlegetCinema()
 }
 
 
@@ -206,16 +218,22 @@ const handleUpdatedata = () => {
  
     let cinemaData1 = JSON.parse(localStorage.getItem("cinema"));
     let CinemaName =  cinemaData1.filter((v) => v.cid == cinema)
+
+    let srNo ;
+    for(let i = 0 ; i < mArr.length ; i ++){
+        srNo = mArr.length
+    }
  
 
     console.log(uid);
     let perentElem = document.getElementById("mData-" +uid)
     console.log(perentElem);
-    perentElem.children[0].textContent = name;
-    perentElem.children[1].textContent = description;
-    perentElem.children[2].textContent = CinemaName[0].name;
-    perentElem.children[3].textContent = timeM ;
-    perentElem.children[4].innerHTML = '<img src=' + '../assets/images/' + imgP.files[0].name + '> '  ;
+    perentElem.children[0].textContent = srNo;
+    perentElem.children[1].textContent = name;
+    perentElem.children[2].textContent = description;
+    perentElem.children[3].textContent = CinemaName[0].name;
+    perentElem.children[4].textContent = timeM ;
+    perentElem.children[5].innerHTML = '<img src=' + '../assets/images/' + imgP.files[0].name + '> '  ;
 
 
 
@@ -271,8 +289,12 @@ const handlegetCinema = () => {
 
     if (getlocalMvdata != null) {
         let mdisp = ''
-        getlocalMvdata.map((m) => {
+        getlocalMvdata.map((m , i) => {
+
+            let srNo = i + 1
+
             mdisp += '<tr id= "mData-' + m.mid + '">'
+            mdisp += '<td>' + srNo + '</td>'
             mdisp += '<td>' + m.mName + '</td>'
             mdisp += '<td>' + m.decrpt + '</td>'
             mdisp += '<td>' + m.Cname + '</td>'
