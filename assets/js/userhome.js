@@ -44,7 +44,7 @@ const getCMUserSide = (data) => {
             disp += ' <div class="movimg"><img src=' + '../assets/images/' + v.poster + '>'
             disp += ' <div class="m1">' + v.mName + '</div>'
             disp += ' <div class="m1">' + v.Cname + '</div>'
-            disp += ' <div class="m1">' + v.decrpt + '</div>'
+            disp += ' <div class="m1 decrpt11">' + v.decrpt + '</div>'
             disp += '</div>'
             disp += '</div>'
             disp += '</div>'

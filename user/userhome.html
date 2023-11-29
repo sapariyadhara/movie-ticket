@@ -425,35 +425,49 @@
             background: #222539
         }
 
-        .container11 ,  .container22 {
+        .container11,
+        .container22 {
             margin: 10px 70px;
         }
 
-        .container11 #trCine , .container22  #trMovie{
+        .container11 #trCine,
+        .container22 #trMovie {
             display: flex;
             flex-wrap: wrap;
-        
+
         }
 
-        .container11 .cineimg img , .container22 .movimg img{
+        .container11 .cineimg img,
+        .container22 .movimg img {
             width: 300px;
             height: 400px;
             border-radius: 7px;
         }
 
-        .container11 #cbtn1 , .container22 #mbtn1 {
+        .container11 #cbtn1,
+        .container22 #mbtn1 {
             margin: 10px 20px;
         }
 
-        #trCine #cbtn1 ,  #trMovie #mbtn1{
+        #trCine #cbtn1,
+        #trMovie #mbtn1 {
             width: 363px;
-            height: 540px;
+            height: auto;
             border: none;
         }
-        #trCine .t1 , #trMovie .m1 {
+
+        #trCine .t1,
+        #trMovie .m1 {
             text-align: left;
             padding: 4px 10px 7px 30px;
+
         }
+
+        #trMovie .decrpt11 {
+            overflow: hidden;
+            height: 100px;
+        }
+
         .container44 {
             display: none;
         }
@@ -499,12 +513,12 @@
                     <input class="form-control me-2" id="searchC" type="search" placeholder="Search" aria-label="Search"
                         name="searchC">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                  
+
                     <div class="col-12">
-                        <a href="../loginpage.html"><button type="button" class="btn btn-primary" 
-                            data-bs-target="#exampleModal" data-bs-whatever="@mdo">Log in</button></a>
+                        <a href="../loginpage.html"><button type="button" class="btn btn-primary"
+                                data-bs-target="#exampleModal" data-bs-whatever="@mdo">Log in</button></a>
                     </div>
-                    
+
                 </form>
     </nav>
 
@@ -551,7 +565,7 @@
     </div>
 
 
-  
+
     <div class="container11">
         <h3 class="">Cinemas</h3>
 
@@ -561,7 +575,7 @@
         </div>
     </div>
 
-   
+
 
     <div class="container44 mt-4">
         <div class="row d-flex justify-content-center">
@@ -579,10 +593,10 @@
             </div>
         </div>
     </div>
-   
+
     <div class="container22">
         <h3 class="">Movies</h3>
-        <div id="trMovie" >
+        <div id="trMovie">
 
 
         </div>
